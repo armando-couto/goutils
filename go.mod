@@ -1,4 +1,4 @@
-module goutils
+module github.com/armando-couto/goutils
 
 go 1.15
 
