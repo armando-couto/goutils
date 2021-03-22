@@ -1,9 +1,11 @@
 package goutils
 
 import (
+	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
+	"math/rand"
 	"net/http"
 	"time"
 )
@@ -21,4 +23,9 @@ func Svc() *sqs.SQS {
 
 	svc := sqs.New(sess, &cfgs)
 	return svc
+}
+
+func TokenGeneratorMessageId() string {
+	rand.Seed(time.Now().UnixNano())
+	return string(fmt.Sprint(RandSeq(8), "-", RandSeq(4), "-", RandSeq(4), "-", RandSeq(4), "-", RandSeq(12)))
 }
