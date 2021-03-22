@@ -113,3 +113,27 @@ func ConvertStringToTimeLayoutDDMMYYYYHHMMSS(d time.Time, h time.Time) time.Time
 func ParseBinToHex(s string) string {
 	return strconv.FormatInt(int64(ConvertStringToInt(s)), 16)
 }
+
+func ConvertStringToInt5Digits(value string) int {
+	if len(value) > 5 {
+		value = value[:5]
+	}
+	i, _ := strconv.Atoi(value)
+	return i
+}
+
+func ConvertFloatToFloatScale2(valor float64) float64 {
+	value := strconv.FormatFloat(valor, 'f', 2, 64)
+	s, _ := strconv.ParseFloat(value, 64)
+	return s
+}
+
+func ConvertFloat64ToString(value float64) string {
+	s := fmt.Sprintf("%.2f", value)
+	return s
+}
+
+func ConvertStringToFloat64(value string) float64 {
+	s, _ := strconv.ParseFloat(value, 64)
+	return s
+}
