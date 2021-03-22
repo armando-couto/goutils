@@ -71,6 +71,11 @@ func ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS(value string) time.Time {
 	return t
 }
 
+func ConvertStringDD_MM_YYYY(date string) time.Time {
+	t, _ := time.Parse(LAYOUT_DD_MM_YYYY, date)
+	return t
+}
+
 func ConvertStringToTimeLayoutYYYYMMDD(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYYMMDD, value)
 	return t
