@@ -1,5 +1,0 @@
-package goutils
-
-func main() {
-
-}
