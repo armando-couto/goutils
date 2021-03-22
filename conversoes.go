@@ -10,6 +10,7 @@ import (
 const LAYOUT_DDMMYYYY = "02012006"
 const LAYOUT_DD_MM_YYYY = "02/01/2006"
 const LAYOUT_DD_MM_YYYY_HH_MM_SS = "02/01/2006 15:04:05"
+const LAYOUT_YYYY_MM_DD_HH_MM_SS = "2006-01-02 15:04:05"
 const LAYOUT_YYYYMMDD = "20060102"
 const LAYOUT_YYMMDDHHMMSS = "060102150405"
 const LAYOUT_YYYYMMDDHHMMSS = "20060102150405"
@@ -84,6 +85,14 @@ func ConvertStringToTimeLayoutYYMMDDHHMMSS(value string) time.Time {
 func ConvertStringToTimeLayoutYYYYMMDDHHMMSS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYYMMDDHHMMSS, value)
 	return t
+}
+
+func ConvertStringToTimeLAYOUT_YYYY_MM_DD_HH_MM_SS(date time.Time) string {
+	return date.Format(LAYOUT_YYYY_MM_DD_HH_MM_SS)
+}
+
+func ConvertStringToTimeLAYOUT_YYYY_MM_DD(date time.Time) string {
+	return date.Format(LAYOUT_YYYY_MM_DD)
 }
 
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
