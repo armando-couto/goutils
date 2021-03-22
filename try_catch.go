@@ -1,4 +1,4 @@
-package utils
+package goutils
 
 type Block struct {
 	Try     func()

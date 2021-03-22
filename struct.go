@@ -1,4 +1,4 @@
-package utils
+package goutils
 
 func ChecaSeIdSeNaoEstaZero(objetoId int) interface{} {
 	if objetoId == 0 {
