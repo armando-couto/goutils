@@ -59,6 +59,12 @@ func RandSeq(n int) string {
 	return string(b)
 }
 
+func RandToken() string {
+	b := make([]byte, 32)
+	rand.Read(b)
+	return fmt.Sprintf("%x", b)
+}
+
 func TokenGeneratorOrderReferenceId() string {
 	rand.Seed(time.Now().UnixNano())
 	return RandSeq(16)
