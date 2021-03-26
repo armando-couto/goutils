@@ -92,3 +92,21 @@ func ContainsReturnBool(a []string, x string) bool {
 func RetiraPontoHifen(s string) string {
 	return strings.Replace(strings.Replace(strings.Replace(s, ".", "", -1), "-", "", -1), "/", "", -1)
 }
+
+func ValidaDecimal(valor string) string {
+	if valor == "" {
+		return "0"
+	}
+	return valor
+}
+
+func ValidaData(data string) string {
+	if data == "" {
+		return "0001-01-01"
+	}
+	return data
+}
+
+func RemoveMascaraCNPJ(cnpj string) string {
+	return strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(cnpj, ".", ""), "-", ""), "/", "")
+}

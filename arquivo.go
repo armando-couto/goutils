@@ -29,6 +29,14 @@ func LeituraDosArquivos(path string, fileName string) string {
 	return string(b)
 }
 
+func RemoveFile(path string) {
+	if os.Remove(path) != nil {
+		CreateFileDay("Problema ao remover do diretório local")
+	} else {
+		CreateFileDay("Removido do local")
+	}
+}
+
 func RetornaAsLinhas(text string) []string {
 	var linhas []string
 	scanner := bufio.NewScanner(strings.NewReader(text))
