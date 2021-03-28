@@ -1,7 +1,12 @@
 # goutils
-Funções usadas no dia a dia que ajudam muito.
+Functions used in everyday life that help a lot.
 
-## Métodos
+## Installation
+```shell script
+$ go get github.com/armando-couto/goutils
+```
+
+## Methods
 ### arquivo.go
 ```go
 ListFolderFiles(path string) Return []os.FileInfo
@@ -27,7 +32,7 @@ TokenGeneratorMessageId() Return string
 
 ### base64.go
 ```go
-ncodeStringToBase64(value string) Return string
+EncodeStringToBase64(value string) Return string
 DecodeBase64ToString(value string) Return string
 ```
 
