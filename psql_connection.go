@@ -42,8 +42,17 @@ func ConexaoBD() *sql.DB {
 ConexaoBDORM conexão com ORM
 */
 func ConexaoBDORM() (DB *gorm.DB) {
-	dsn := "host=localhost user=postgres password=admin dbname=sandboxs port=5432 sslmode=disable"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	var host, dbname, user, password string
+	var port int
+
+	host = Godotenv("host")
+	dbname = Godotenv("dbname")
+	port, _ = strconv.Atoi(Godotenv("port_banco"))
+	user = Godotenv("user")
+	password = Godotenv("password")
+
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
