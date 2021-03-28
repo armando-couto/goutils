@@ -1,4 +1,4 @@
-# goutils
+# Module goutils
 Functions used in everyday life that help a lot.
 
 ## Installation
