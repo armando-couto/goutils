@@ -10,7 +10,10 @@ import (
 	"time"
 )
 
-func Svc() *sqs.SQS {
+/*
+	ConectionSQS o antigo nome era: Svc
+*/
+func ConectionSQS() *sqs.SQS {
 	sess := session.Must(session.NewSession(&aws.Config{
 		MaxRetries:                    aws.Int(1),
 		CredentialsChainVerboseErrors: aws.Bool(true),
@@ -25,6 +28,9 @@ func Svc() *sqs.SQS {
 	return svc
 }
 
+/*
+	TokenGeneratorMessageId get token do Message.
+*/
 func TokenGeneratorMessageId() string {
 	rand.Seed(time.Now().UnixNano())
 	return string(fmt.Sprint(RandSeq(8), "-", RandSeq(4), "-", RandSeq(4), "-", RandSeq(4), "-", RandSeq(12)))

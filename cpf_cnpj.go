@@ -6,7 +6,10 @@ import (
 	"strings"
 )
 
-func ValidaCPF(cpf string) error {
+/*
+	ValidationCPF o antigo nome era: ValidaCPF
+*/
+func ValidationCPF(cpf string) error {
 	cpf = strings.Replace(cpf, ".", "", -1)
 	cpf = strings.Replace(cpf, "-", "", -1)
 	if len(cpf) != 11 {
@@ -66,7 +69,10 @@ func ValidaCPF(cpf string) error {
 	return nil
 }
 
-func ValidaCNPJ(cnpj string) error {
+/*
+	ValidationCNPJ o antigo nome era: ValidaCNPJ
+*/
+func ValidationCNPJ(cnpj string) error {
 	cnpj = strings.Replace(cnpj, ".", "", -1)
 	cnpj = strings.Replace(cnpj, "-", "", -1)
 	cnpj = strings.Replace(cnpj, "/", "", -1)

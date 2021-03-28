@@ -6,6 +6,9 @@ import (
 	"runtime"
 )
 
+/*
+	Godotenv
+*/
 func Godotenv(key string) string {
 	var err error
 	if runtime.GOOS == "linux" {

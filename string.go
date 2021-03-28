@@ -9,17 +9,26 @@ import (
 	"time"
 )
 
+/*
+	RemoveZerosInLeft
+*/
 func RemoveZerosInLeft(value string) string {
 	i, _ := strconv.Atoi(value)
 	return ConvertIntToString(i)
 }
 
-func TirarEspacoString(value string) string {
+/*
+	RemoveSpaceString o antigo nome era: TirarEspacoString
+*/
+func RemoveSpaceString(value string) string {
 	t := strings.ReplaceAll(value, " ", "")
 	return t
 }
 
-func RemoveCaracteres(value string) string {
+/*
+	RemoveCharacters o antigo nome era: RemoveCaracteres
+*/
+func RemoveCharacters(value string) string {
 	value = strings.Replace(value, ".", "", 1)
 	value = strings.Replace(value, ".", "", 1)
 	value = strings.Replace(value, "-", "", 1)
@@ -27,28 +36,34 @@ func RemoveCaracteres(value string) string {
 	return value
 }
 
-func PadronizaMascarasDeCartao(numeroCartao string) string {
+/*
+	StandardizesMasksByCard o antigo nome era: PadronizaMascarasDeCartao
+*/
+func StandardizesMasksByCard(numeroCartao string) string {
 	numero := strings.ReplaceAll(numeroCartao, "000", "")
 	numero = strings.ReplaceAll(numero, "*", "")
 	return numero
 }
 
+/*
+	StringTrim
+*/
 func StringTrim(value string) string {
 	return strings.Trim(value, " ")
 }
 
+/*
+	RemoveSpecialCharacters
+*/
 func RemoveSpecialCharacters(value string) string {
 	// Make a Regex to say we only want letters and numbers
 	reg, _ := regexp.Compile("[^a-zA-Z0-9]+")
 	return reg.ReplaceAllString(value, "")
 }
 
-func TokenGenerator1() string {
-	b := make([]byte, 36)
-	rand.Read(b)
-	return fmt.Sprintf("%x", b)
-}
-
+/*
+	RandSeq
+*/
 func RandSeq(n int) string {
 	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
@@ -59,54 +74,60 @@ func RandSeq(n int) string {
 	return string(b)
 }
 
-func RandToken() string {
-	b := make([]byte, 32)
+/*
+	TokenGeneratorNLength o antigo nome era: RandToken
+*/
+func TokenGeneratorNLength(length int) string {
+	b := make([]byte, length)
 	rand.Read(b)
 	return fmt.Sprintf("%x", b)
 }
 
+/*
+	TokenGeneratorOrderReferenceId
+*/
 func TokenGeneratorOrderReferenceId() string {
 	rand.Seed(time.Now().UnixNano())
 	return RandSeq(16)
 }
 
-func Contains(a []string, x string) int {
-	count := 0
-	for _, n := range a {
-		if x == n {
-			count += 1
-		}
-	}
-	return count
-}
-
-func ContainsReturnBool(a []string, x string) bool {
-	for _, n := range a {
-		if x == n {
-			return true
-		}
-	}
-	return false
-}
-
-func RetiraPontoHifen(s string) string {
+/*
+	RemoveHeadHyphen o antigo nome era: RetiraPontoHifen
+*/
+func RemoveHeadHyphen(s string) string {
 	return strings.Replace(strings.Replace(strings.Replace(s, ".", "", -1), "-", "", -1), "/", "", -1)
 }
 
-func ValidaDecimal(valor string) string {
+/*
+	ValidateIfNotEmptyNumber o antigo nome era: ValidaDecimal
+*/
+func ValidateIfNotEmptyNumber(valor string) string {
 	if valor == "" {
 		return "0"
 	}
 	return valor
 }
 
-func ValidaData(data string) string {
+/*
+	ValidateIfNotEmptyDate o antigo nome era: ValidaData
+*/
+func ValidateIfNotEmptyDate(data string) string {
 	if data == "" {
 		return "0001-01-01"
 	}
 	return data
 }
 
-func RemoveMascaraCNPJ(cnpj string) string {
+/*
+	RemoveCNPJMask o antigo nome era: RemoveMascaraCNPJ
+*/
+func RemoveCNPJMask(cnpj string) string {
 	return strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(cnpj, ".", ""), "-", ""), "/", "")
+}
+
+/*
+	ParseBinToHex
+*/
+func ParseBinToHex(s string) string {
+	return strconv.FormatInt(int64(ConvertStringToInt(s)), 16)
 }

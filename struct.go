@@ -1,6 +1,9 @@
 package goutils
 
-func ChecaSeIdSeNaoEstaZero(objetoId int) interface{} {
+/*
+	CheckIfIdIfNotZero o antigo nome era: ChecaSeIdSeNaoEstaZero
+*/
+func CheckIfIdIfNotZero(objetoId int) interface{} {
 	if objetoId == 0 {
 		return nil
 	}

@@ -7,7 +7,10 @@ import (
 	"time"
 )
 
-func ConexaoBDMySQL() *sql.DB {
+/*
+	ConnectionBDMySQL o antigo nome era: ConexaoBDMySQL
+*/
+func ConnectionBDMySQL() *sql.DB {
 	db, err := sql.Open("mysql", os.Getenv("database_mysql"))
 	if err != nil {
 		CreateFileDay(err.Error())

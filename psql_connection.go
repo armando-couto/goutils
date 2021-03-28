@@ -10,7 +10,10 @@ import (
 	"time"
 )
 
-func ConexaoBD() *sql.DB {
+/*
+	ConnectionBDPostgreSQL o antigo nome era: ConexaoDB
+*/
+func ConnectionBDPostgreSQL() *sql.DB {
 	var host, dbname, user, password string
 	var port int
 
@@ -38,10 +41,10 @@ func ConexaoBD() *sql.DB {
 	return db
 }
 
-/**
-ConexaoBDORM conexão com ORM
+/*
+	ConnectionBDPostgreSQLORM o antigo nome era: ConexaoBDORM
 */
-func ConexaoBDORM() (DB *gorm.DB) {
+func ConnectionBDPostgreSQLORM() (DB *gorm.DB) {
 	var host, dbname, user, password string
 	var port int
 

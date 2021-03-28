@@ -2,21 +2,33 @@ package goutils
 
 import "strings"
 
-func MaskCard6DigitosIniciais(cardString string) string {
+/*
+	MaskCard6Initials o antigo nome era: MaskCard6DigitosIniciais
+*/
+func MaskCard6Initials(cardString string) string {
 	s := strings.SplitN(cardString, " ", 4)
 	return s[0] + s[1][0:2] + "XXXXXX" + s[3]
 }
 
-func MaskUltimosDigitos(card string) string {
+/*
+	MaskLastDigits o antigo nome era: MaskUltimosDigitos
+*/
+func MaskLastDigits(card string) string {
 	sp := strings.Split(card, "XXXXXX")
 	return "**********" + sp[1]
 }
 
+/*
+	MaskCard
+*/
 func MaskCard(cardString string) string {
 	return "************" + strings.SplitN(cardString, " ", 4)[3]
 }
 
-func ValidadeCartao(valor string) (string, string) {
+/*
+	ExpiryDate o antigo nome era: ValidadeCartao
+*/
+func ExpiryDate(valor string) (string, string) {
 	var validade []string
 	if strings.Contains(valor, "/") {
 		validade = strings.Split(valor, "/")
@@ -35,7 +47,10 @@ func ValidadeCartao(valor string) (string, string) {
 	return mes, validade[1]
 }
 
-func ValidarTelefone(telefone string) string {
+/*
+	ValidateTelephone o antigo nome era: ValidarTelefone
+*/
+func ValidateTelephone(telefone string) string {
 	r := strings.NewReplacer(" ", "",
 		"-", "",
 		"(", "", ")", "", " ", "")

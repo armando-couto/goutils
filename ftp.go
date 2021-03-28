@@ -11,7 +11,10 @@ import (
 	"time"
 )
 
-func ListaDeArquivosDisponiveisNoFTP(remote string, port string, user string, pass string) (*ftp.ServerConn, error, []string) {
+/*
+	ListOfAvailableFilesNoFTP o antigo nome era: ListaDeArquivosDisponiveisNoFTP
+*/
+func ListOfAvailableFilesNoFTP(remote string, port string, user string, pass string) (*ftp.ServerConn, error, []string) {
 	c, err := ftp.Dial(remote+":"+port, ftp.DialWithTimeout(60*time.Second))
 	if err != nil {
 		CreateFileDay(err.Error())
@@ -29,8 +32,9 @@ func ListaDeArquivosDisponiveisNoFTP(remote string, port string, user string, pa
 	return c, err, list
 }
 
-// parse OpenSSH known_hosts file
-// ssh or use ssh-keyscan to get initial key
+/*
+	GetHostKey: parse OpenSSH known_hosts file ssh or use ssh-keyscan to get initial key
+*/
 func GetHostKey(host string, isProduction bool) ssh.PublicKey {
 	var file *os.File
 	var err error
@@ -66,6 +70,5 @@ func GetHostKey(host string, isProduction bool) ssh.PublicKey {
 	if hostKey == nil {
 		log.Fatalf("no hostkey found for %s", host)
 	}
-
 	return hostKey
 }

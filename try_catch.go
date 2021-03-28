@@ -1,5 +1,9 @@
 package goutils
 
+/*
+	https://dzone.com/articles/try-and-catch-in-golang
+*/
+
 type Block struct {
 	Try     func()
 	Catch   func(Exception)
@@ -8,10 +12,16 @@ type Block struct {
 
 type Exception interface{}
 
+/*
+	Throw
+*/
 func Throw(up Exception) {
 	panic(up)
 }
 
+/*
+	Do
+*/
 func (tcf Block) Do() {
 	if tcf.Finally != nil {
 

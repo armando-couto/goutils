@@ -10,12 +10,13 @@ import (
 	"os"
 )
 
-func CsvGzExport(StructCsv [][]string, nomeArquivo string) error {
-
+/*
+	CSVGZExport o antigo nome era: CsvGzExport
+*/
+func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 	if len(StructCsv) < 1 {
 		return errors.New("ERRO: Dados vazios")
 	}
-
 	var buf bytes.Buffer
 
 	file, err := os.Create(nomeArquivo + ".csv.gz")
@@ -44,7 +45,10 @@ func CsvGzExport(StructCsv [][]string, nomeArquivo string) error {
 	return nil
 }
 
-func CsvRead(pathFile string) [][]string {
+/*
+	CSVRead o antigo nome era: CsvRead
+*/
+func CSVRead(pathFile string) [][]string {
 	f, err := os.Open(pathFile)
 	if err != nil {
 		CreateFileDay("ERRO: Leitura arquivo CSV:" + err.Error())
@@ -60,7 +64,10 @@ func CsvRead(pathFile string) [][]string {
 	return lines
 }
 
-func GeradorArquivosGen(payload []interface{}, f func([][]string) [][]string, nomeArq string) error {
+/*
+	GeneratorFilesGen o antigo nome era: GeradorArquivosGen
+*/
+func GeneratorFilesGen(payload []interface{}, f func([][]string) [][]string, nomeArq string) error {
 	structToCsv := make([][]string, 0)
 	if len(payload) < 1 {
 		return errors.New("Arquivo vazio !!! ---->" + nomeArq)
@@ -74,13 +81,12 @@ func GeradorArquivosGen(payload []interface{}, f func([][]string) [][]string, no
 				b = append(b, fmt.Sprintf("%v", v))
 			}
 		}
-
 		structToCsv = append(structToCsv, b)
 	}
 	if f != nil {
 		structToCsv = f(structToCsv)
 	}
 
-	err := CsvGzExport(structToCsv, nomeArq)
+	err := CSVGZExport(structToCsv, nomeArq)
 	return err
 }
