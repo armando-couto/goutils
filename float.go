@@ -59,13 +59,24 @@ func ConvertStringToFloatScale2Comma(value string) float64 {
 }
 
 /*
-	ConvertStringToFloatScale2
+	ConvertStringToFloatScale2Format o antigo nome era: ConvertStringToFloatScale2
 */
-func ConvertStringToFloatScale2(value string) float64 {
+func ConvertStringToFloatScale2FormatNumber(value string) float64 {
 	if len(value) == 1 {
 		value = fmt.Sprint("0", value)
 	}
 	value = fmt.Sprint(value[:len(value)-2], ".", value[len(value)-2:])
+	s, _ := strconv.ParseFloat(value, 64)
+	return s
+}
+
+/*
+	ConvertStringToFloatScale2
+*/
+func ConvertStringToFloatScale2(value string) float64 {
+	if value == "" {
+		return 0
+	}
 	s, _ := strconv.ParseFloat(value, 64)
 	return s
 }
