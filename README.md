@@ -54,7 +54,7 @@ CSVRead(pathFile string) Return [][]string
 GeneratorFilesGen(payload []interface{}, f func([][]string) [][]string, nomeArq string) Return error
 ```
 
-### date.go
+### datetime.go
 ```go
 ConvertStringToTimeLayoutDDMMYYYY(value string) Return time.Time
 ConvertTimeToStringLayoutDD_MM_YYYY(date time.Time) Return string
@@ -90,7 +90,8 @@ ConvertFloatToFloatScale2(valor float64) Return float64
 ConvertFloat64ToString(value float64) Return string
 ConvertStringToFloat64(value string) Return float64
 ConvertStringToFloatScale2Comma(value string) Return float64
-ConvertStringToFloatScale2(value string) Return float64
+ConvertStringToFloatScale2FormatNumber(value string) Return float64
+ConvertStringToFloatScale2(value string) float64
 ```
 
 ### ftp.go
