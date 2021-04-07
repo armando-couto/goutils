@@ -21,13 +21,11 @@ const LAYOUT_HH_MM_SS = "15:04:05"
 const LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z = "2006-01-02T15:04:05.000Z"
 const LAYOUT_YYYY_MM_DDTHH_MM_SS_000 = "2006-01-02 15:04:05"
 
-var LOC, _ = time.LoadLocation("America/Fortaleza")
-
 /*
 	ConvertStringToTimeLayoutDDMMYYYY
 */
 func ConvertStringToTimeLayoutDDMMYYYY(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_DDMMYYYY, value, LOC)
+	t, _ := time.Parse(LAYOUT_DDMMYYYY, value)
 	return t
 }
 
@@ -42,7 +40,7 @@ func ConvertTimeToStringLayoutDD_MM_YYYY(date time.Time) string {
 	ConvertStringToTimeLayoutDD_MM_YYYY
 */
 func ConvertStringToTimeLayoutDD_MM_YYYY(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_DD_MM_YYYY, value, LOC)
+	t, _ := time.Parse(LAYOUT_DD_MM_YYYY, value)
 	return t
 }
 
@@ -50,7 +48,7 @@ func ConvertStringToTimeLayoutDD_MM_YYYY(value string) time.Time {
 	ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS
 */
 func ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_DD_MM_YYYY_HH_MM_SS, value, LOC)
+	t, _ := time.Parse(LAYOUT_DD_MM_YYYY_HH_MM_SS, value)
 	return t
 }
 
@@ -58,7 +56,7 @@ func ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS(value string) time.Time {
 	ConvertStringDD_MM_YYYY
 */
 func ConvertStringDD_MM_YYYY(date string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_DD_MM_YYYY, date, LOC)
+	t, _ := time.Parse(LAYOUT_DD_MM_YYYY, date)
 	return t
 }
 
@@ -74,7 +72,7 @@ func ConverTimeToStrinLayoutYYYY_MM_DD(data time.Time) string {
 	ConvertStringToTimeLayoutYYYYMMDD
 */
 func ConvertStringToTimeLayoutYYYYMMDD(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYYYMMDD, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYYYMMDD, value)
 	return t
 }
 
@@ -82,7 +80,7 @@ func ConvertStringToTimeLayoutYYYYMMDD(value string) time.Time {
 	ConvertStringToTimeLayoutYYYY_MM_DD
 */
 func ConvertStringToTimeLayoutYYYY_MM_DD(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYYY_MM_DD, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYYY_MM_DD, value)
 	return t
 }
 
@@ -98,7 +96,7 @@ func ConverTimeToStrinLayoutYYYYMMDD(data time.Time) string {
 	ConvertStringToTimeLayoutYYMMDDHHMMSS
 */
 func ConvertStringToTimeLayoutYYMMDDHHMMSS(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYMMDDHHMMSS, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYMMDDHHMMSS, value)
 	return t
 }
 
@@ -106,7 +104,7 @@ func ConvertStringToTimeLayoutYYMMDDHHMMSS(value string) time.Time {
 	ConvertStringToTimeLayoutYYYYMMDDHHMMSS
 */
 func ConvertStringToTimeLayoutYYYYMMDDHHMMSS(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYYYMMDDHHMMSS, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYYYMMDDHHMMSS, value)
 	return t
 }
 
@@ -128,7 +126,7 @@ func ConvertStringToTimeLayout_YYYY_MM_DD(date time.Time) string {
 	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z, value)
 	return t
 }
 
@@ -136,7 +134,7 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
 	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_YYYY_MM_DDTHH_MM_SS_000, value, LOC)
+	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS_000, value)
 	return t
 }
 
@@ -144,7 +142,7 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000(value string) time.Time {
 	ConvertStringToTimeLayoutHHMMSS
 */
 func ConvertStringToTimeLayoutHHMMSS(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_HHMMSS, value, LOC)
+	t, _ := time.Parse(LAYOUT_HHMMSS, value)
 	return t
 }
 
@@ -152,7 +150,7 @@ func ConvertStringToTimeLayoutHHMMSS(value string) time.Time {
 	ConvertStringToTimeLayoutHH_MM_SS
 */
 func ConvertStringToTimeLayoutHH_MM_SS(value string) time.Time {
-	t, _ := time.ParseInLocation(LAYOUT_HH_MM_SS, value, LOC)
+	t, _ := time.Parse(LAYOUT_HH_MM_SS, value)
 	return t
 }
 
@@ -187,5 +185,5 @@ func RangeDate(end, start time.Time) func() time.Time {
 	DatePlusTime
 */
 func DatePlusTime(date, timeOfDay time.Time) (time.Time, error) {
-	return time.ParseInLocation("2006-01-02 15:04:05", date.Format("2006-01-02")+" "+timeOfDay.Format("15:04:05"), LOC)
+	return time.Parse("2006-01-02 15:04:05", date.Format("2006-01-02")+" "+timeOfDay.Format("15:04:05"))
 }
