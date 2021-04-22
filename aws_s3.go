@@ -7,9 +7,13 @@ import (
 	"mime/multipart"
 )
 
-func UpdloadInS3(file multipart.File, header multipart.FileHeader) string {
+func UpdloadInS3(file multipart.File, path, fileName string) string {
 	// The session the S3 Uploader will use
 	sess := ConnectAws()
+
+	if path != "" {
+		fileName = fmt.Sprint(path, "/", fileName)
+	}
 
 	// Create an uploader with the session and default options
 	uploader := s3manager.NewUploader(sess)
@@ -17,12 +21,11 @@ func UpdloadInS3(file multipart.File, header multipart.FileHeader) string {
 	myBucket := Godotenv("BUCKET_NAME")
 
 	//file, header, err := c.Request.FormFile("photo")
-	filename := header.Filename
 	//upload to the s3 bucket
 	up, err := uploader.Upload(&s3manager.UploadInput{
 		Bucket: aws.String(myBucket),
 		ACL:    aws.String("public-read"),
-		Key:    aws.String(filename),
+		Key:    aws.String(fileName),
 		Body:   file,
 	})
 	if err != nil {
@@ -30,5 +33,5 @@ func UpdloadInS3(file multipart.File, header multipart.FileHeader) string {
 		return ""
 	}
 	CreateFileDay(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
-	return "https://" + myBucket + "." + "s3-" + MyRegion + ".amazonaws.com/" + filename
+	return "https://" + myBucket + "." + "s3-" + MyRegion + ".amazonaws.com/" + fileName
 }
