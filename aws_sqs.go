@@ -3,10 +3,8 @@ package goutils
 import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
 	"math/rand"
-	"net/http"
 	"time"
 )
 
@@ -14,18 +12,11 @@ import (
 	ConectionSQS o antigo nome era: Svc
 */
 func ConectionSQS() *sqs.SQS {
-	sess := session.Must(session.NewSession(&aws.Config{
-		MaxRetries:                    aws.Int(1),
-		CredentialsChainVerboseErrors: aws.Bool(true),
-		HTTPClient:                    &http.Client{Timeout: 10 * time.Second},
-	}))
-
-	cfgs := aws.Config{}
+	// The session the S3 Uploader will use
+	sess := ConnectAws()
 	regian := "us-east-1"
-	cfgs.Region = &regian
-
-	svc := sqs.New(sess, &cfgs)
-	return svc
+	cfgs := aws.Config{Region: &regian}
+	return sqs.New(sess, &cfgs)
 }
 
 /*
