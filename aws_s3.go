@@ -7,8 +7,6 @@ import (
 	"mime/multipart"
 )
 
-var filepath string
-
 func UpdloadInS3(file multipart.File, header multipart.FileHeader) string {
 	// The session the S3 Uploader will use
 	sess := ConnectAws()
