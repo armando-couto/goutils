@@ -29,5 +29,5 @@ func CreateFileDayError(message string) {
 	defer f.Close()
 
 	logger := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.Fatalln(message)
+	logger.Println(message)
 }
