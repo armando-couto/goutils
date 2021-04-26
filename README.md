@@ -110,7 +110,8 @@ ConvertIntToString(value int) Return string
 
 ### logger_file.go
 ```go
-CreateFileDay(message string) Return void
+CreateFileDayInfo(message string) Return void
+CreateFileDayError(message string) Return void
 ```
 
 ### mysql_connection.go
@@ -161,4 +162,3 @@ MaskCard(cardString string) Return string
 ExpiryDate(valor string) Returns (string, string)
 ValidateTelephone(telefone string) Return string
 ```
-
