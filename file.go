@@ -15,7 +15,7 @@ import (
 func ListFolderFiles(path string) []os.FileInfo {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		CreateFileDay(fmt.Sprint("a pasta '", path, "' não existe!"))
+		CreateFileDayError(fmt.Sprint("a pasta '", path, "' não existe!"))
 	}
 	return files
 }
@@ -27,7 +27,7 @@ func ReadingFiles(path string, fileName string) string {
 	file, err := os.Open(fmt.Sprint(path, fileName))
 	if err != nil {
 		log.Fatal(err)
-		CreateFileDay(fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!"))
+		CreateFileDayError(fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!"))
 	}
 	defer file.Close()
 
@@ -40,9 +40,9 @@ func ReadingFiles(path string, fileName string) string {
 */
 func RemoveFilesOfPath(path string) {
 	if os.Remove(path) != nil {
-		CreateFileDay("Problema ao remover do diretório local")
+		CreateFileDayError("Problema ao remover do diretório local")
 	} else {
-		CreateFileDay("Removido do local")
+		CreateFileDayError("Removido do local")
 	}
 }
 
@@ -81,7 +81,7 @@ func CreateArchiveNodirectory(nomeDoArquivo string, conteudo string) error {
 */
 func IsError(err error) bool {
 	if err != nil {
-		CreateFileDay(err.Error())
+		CreateFileDayError(err.Error())
 	}
 	return err != nil
 }
@@ -98,5 +98,5 @@ func Backup(path, name, texto string) {
 
 	path_nome_arquivo_antigo := fmt.Sprint(path, name)
 	os.Remove(path_nome_arquivo_antigo)
-	CreateFileDay(fmt.Sprint("Concluída a Leitura do Arquivo: ", name))
+	CreateFileDayInfo(fmt.Sprint("Concluída a Leitura do Arquivo: ", name))
 }

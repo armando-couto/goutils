@@ -33,9 +33,9 @@ func UpdloadInS3(file multipart.File, path, fileName string) string {
 		Body:   file,
 	})
 	if err != nil {
-		CreateFileDay(err.Error())
+		CreateFileDayError(err.Error())
 		return ""
 	}
-	CreateFileDay(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
+	CreateFileDayInfo(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }

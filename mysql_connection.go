@@ -12,9 +12,9 @@ import (
 func ConnectionBDMySQL() *sql.DB {
 	db, err := sql.Open("mysql", Godotenv("database_mysql"))
 	if err != nil {
-		CreateFileDay(err.Error())
+		CreateFileDayError(err.Error())
 		if db.Ping() != nil {
-			CreateFileDay("Erro ping DB")
+			CreateFileDayError("Erro ping DB")
 		}
 	}
 
