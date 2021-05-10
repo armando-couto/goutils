@@ -76,6 +76,8 @@ ConvertStringToTimeLayoutHH_MM_SS(value string) Return time.Time
 ConvertStringToTimeLayoutDDMMYYYYHHMMSS(d time.Time, h time.Time) Return time.Time
 RangeDate(end, start time.Time) func() Return time.Time
 DatePlusTime(date, timeOfDay time.Time) Returns (time.Time, error)
+WeekStartDate(date time.Time) time.Time
+WeekEndDate(date time.Time) time.Time
 ```
 
 ### environment.go

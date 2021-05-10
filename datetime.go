@@ -192,3 +192,21 @@ func RangeDate(end, start time.Time) func() time.Time {
 func DatePlusTime(date, timeOfDay time.Time) (time.Time, error) {
 	return time.Parse("2006-01-02 15:04:05", date.Format("2006-01-02")+" "+timeOfDay.Format("15:04:05"))
 }
+
+/*
+	Qual é o dia da Segunda-feira da data que passou
+*/
+func WeekStartDate(date time.Time) time.Time {
+	offset := (int(time.Monday) - int(date.Weekday()) - 7) % 7
+	result := date.Add(time.Duration(offset*24) * time.Hour)
+	return result
+}
+
+/*
+	Qual é o dia da Sexta-feira da data que passou
+*/
+func WeekEndDate(date time.Time) time.Time {
+	offset := int(time.Friday) - int(date.Weekday())
+	result := date.Add(time.Duration(offset*24) * time.Hour)
+	return result
+}
