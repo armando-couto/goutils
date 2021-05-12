@@ -63,6 +63,7 @@ func ConvertStringToFloatScale2Comma(value string) float64 {
 */
 func ConvertStringToFloatScale2FormatNumber(value string) float64 {
 	value = strings.Replace(value, ".", "", 1)
+	value = strings.Replace(value, ",", "", 1)
 	if len(value) == 1 {
 		value = fmt.Sprint("0", value)
 	}
