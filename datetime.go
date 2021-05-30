@@ -197,6 +197,10 @@ func DatePlusTime(date, timeOfDay time.Time) (time.Time, error) {
 	Qual é o dia da Segunda-feira da data que passou
 */
 func WeekStartDate(date time.Time) time.Time {
+	if int(time.Sunday) == 0 { // Caso seja Domingo jogar para segunda
+		date = date.Add(time.Hour * 24)
+	}
+
 	offset := (int(time.Monday) - int(date.Weekday()) - 7) % 7
 	result := date.Add(time.Duration(offset*24) * time.Hour)
 	return result
