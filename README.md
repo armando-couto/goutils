@@ -165,3 +165,9 @@ MaskCard(cardString string) Return string
 ExpiryDate(valor string) Returns (string, string)
 ValidateTelephone(telefone string) Return string
 ```
+
+### zip.go
+```go
+ZipFiles(filename string, files []string) Return error
+AddFileToZip(zipWriter *zip.Writer, filename string) Return error
+```
