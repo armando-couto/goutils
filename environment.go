@@ -1,6 +1,7 @@
 package goutils
 
 import (
+	"fmt"
 	"github.com/joho/godotenv"
 	"os"
 	"runtime"
@@ -17,9 +18,7 @@ func Godotenv(key string) string {
 		err = godotenv.Load(".env")
 	}
 	if err != nil {
-		err = godotenv.Load("../.env.test")
-		if err != nil {
-		}
+		fmt.Println(err.Error())
 	}
 	return os.Getenv(key)
 }

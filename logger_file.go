@@ -19,6 +19,7 @@ func CreateFileDayInfo(message string) {
 
 	logger := log.New(f, "INFO\t", log.Ldate|log.Ltime)
 	logger.Println(message)
+	fmt.Println(message)
 }
 
 func CreateFileDayError(message string) {
@@ -30,6 +31,7 @@ func CreateFileDayError(message string) {
 
 	logger := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
 	logger.Println(message)
+	fmt.Println(message)
 }
 
 func CreateFileDayInfoNotDate(message string) {
