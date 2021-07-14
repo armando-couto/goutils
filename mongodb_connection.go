@@ -17,7 +17,7 @@ func ConnectionMongoDB() *mongo.Database {
 	max = 10
 	clientOptions := options.ClientOptions{MaxPoolSize: &max}
 
-	clientOptions.SetAuth(options.Credential{Username: Godotenv("logger_user"), Password: Godotenv("logger_password")})
+	//clientOptions.SetAuth(options.Credential{Username: Godotenv("logger_user"), Password: Godotenv("logger_password")})
 	clientOptions.ApplyURI(Godotenv("logger_url"))
 	client, err := mongo.Connect(ctx, &clientOptions)
 	if err != nil {
