@@ -23,5 +23,5 @@ func ConnectionMongoDB() *mongo.Database {
 	if err != nil {
 		log.Fatalln(err.Error())
 	}
-	return client.Database("logger_database")
+	return client.Database(Godotenv("logger_database"))
 }
