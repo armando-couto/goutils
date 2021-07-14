@@ -1,5 +1,7 @@
 package goutils
 
+import "strconv"
+
 /*
 	ContainsToStringInArrayReturnBool o antigo nome era: ContainsReturnBool
 */
@@ -10,4 +12,9 @@ func ContainsToStringInArrayReturnBool(a []string, x string) bool {
 		}
 	}
 	return false
+}
+
+func ConvertStringToBool(value string) bool {
+	result, _ := strconv.ParseBool(value)
+	return result
 }

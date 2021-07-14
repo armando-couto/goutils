@@ -16,8 +16,8 @@ type MongoObject struct {
 /*
 	CreateFileDayInfo o antigo nome era: CreateFileDay
 */
-func CreateFileDayInfo(message string, saveMongoDB bool) {
-	if saveMongoDB {
+func CreateFileDayInfo(message string) {
+	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
@@ -39,8 +39,8 @@ func CreateFileDayInfo(message string, saveMongoDB bool) {
 	}
 }
 
-func CreateFileDayError(message string, saveMongoDB bool) {
-	if saveMongoDB {
+func CreateFileDayError(message string) {
+	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
