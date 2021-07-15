@@ -1,6 +1,11 @@
 # Module goutils
 Functions used in everyday life that help a lot.
 
+### Dependencia
+```shell
+go get go.mongodb.org/mongo-driver@v1.1.0
+```
+
 ## Installation
 ```shell script
 $ go get github.com/armando-couto/goutils
