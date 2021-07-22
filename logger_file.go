@@ -65,16 +65,15 @@ func CreateFileDayError(message string) {
 type MongoObject2 struct {
 	Date   time.Time
 	Object interface{}
-	UserId int
 }
 
-func InsertAudit(object interface{}, userId int) {
+func InsertAudit(object interface{}) {
 	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 		defer connection.Client().Disconnect(ctx)
-		_, err := connection.Collection("audits").InsertOne(ctx, MongoObject2{Date: time.Now(), Object: object, UserId: userId})
+		_, err := connection.Collection("audits").InsertOne(ctx, MongoObject2{Date: time.Now(), Object: object})
 		if err != nil {
 			log.Println(err)
 		}
