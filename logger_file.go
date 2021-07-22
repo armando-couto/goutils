@@ -62,6 +62,35 @@ func CreateFileDayError(message string) {
 	}
 }
 
+type MongoObject2 struct {
+	Date   time.Time
+	Object interface{}
+	UserId int
+}
+
+func CreateFileDayAudit(object interface{}, userId int) {
+	if ConvertStringToBool(Godotenv("logger")) {
+		connection := ConnectionMongoDB()
+		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+		defer connection.Client().Disconnect(ctx)
+		_, err := connection.Collection("audits").InsertOne(ctx, MongoObject2{Date: time.Now(), Object: object, UserId: userId})
+		if err != nil {
+			log.Println(err)
+		}
+	} else {
+		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Println(err)
+		}
+		defer f.Close()
+
+		logger := log.New(f, "AUDIT\t", log.Ldate|log.Ltime)
+		logger.Println(object)
+		fmt.Println(object)
+	}
+}
+
 func CreateFileDayInfoNotDate(message string) {
 	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
