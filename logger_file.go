@@ -68,7 +68,7 @@ type MongoObject2 struct {
 	UserId int
 }
 
-func CreateFileDayAudit(object interface{}, userId int) {
+func InsertAudit(object interface{}, userId int) {
 	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
