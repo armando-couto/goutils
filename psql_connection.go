@@ -26,9 +26,9 @@ func ConnectionBDPostgreSQL() *sql.DB {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
 	db, err := sql.Open("postgres", psqlInfo)
-	db.SetMaxOpenConns(50)
-	db.SetMaxIdleConns(25)
-	db.SetConnMaxLifetime(5 * time.Minute)
+	db.SetMaxOpenConns(300)
+	db.SetMaxIdleConns(50)
+	db.SetConnMaxLifetime(1 * time.Minute)
 	if err != nil {
 		panic(err)
 	}
