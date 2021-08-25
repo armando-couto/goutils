@@ -99,7 +99,8 @@ ConvertFloat64ToString4Decimal(value string) Return float64
 ConvertStringToFloat64(value string) Return float64
 ConvertStringToFloatScale2Comma(value string) Return float64
 ConvertStringToFloatScale2FormatNumber(value string) Return float64
-ConvertStringToFloatScale2(value string) float64
+ConvertStringToFloatScale2(value string) Return float64
+ConvertFloatToBrMoneyString(value float64) Return string
 ```
 
 ### ftp.go

@@ -98,3 +98,32 @@ func ConvertStringToFloatScale2(value string) float64 {
 	s, _ := strconv.ParseFloat(value, 64)
 	return s
 }
+
+/*
+	ConvertFloatToBrMoneyString
+*/
+func ConvertFloatToBrMoneyString(value float64) string{
+	str := 	fmt.Sprintf("%.2f", value)
+	split := strings.Split(str, ".")
+
+	number := split[0]
+	decimal := "00"
+	if len(split) > 0 {
+		decimal = split[1]
+	}
+
+	var values []string
+
+	if len(number) < 3 {
+		values = append(values, number)
+	} else {
+		for i := len(number); i > 0; i -= 3 {
+			j := i-3
+			if j < 0 {
+				j = 0
+			}
+			values = append([]string{number[j:i]}, values...)
+		}
+	}
+	return strings.Join(values[:], ".") + `,` + decimal
+}
