@@ -37,6 +37,14 @@ func ConvertFloat64ToString(value float64) string {
 }
 
 /*
+	ConvertkeepZeroToFloat64
+*/
+func ConvertkeepZeroToFloat64(value KeepZero) float64 {
+	s, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", value), 64)
+	return s
+}
+
+/*
 	ConvertFloat64ToString4Decimal
 */
 func ConvertFloat64ToString4Decimal(value float64) string {
