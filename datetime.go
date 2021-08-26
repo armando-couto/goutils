@@ -20,6 +20,7 @@ const LAYOUT_HHMMSS = "150405"
 const LAYOUT_HH = "15"
 const LAYOUT_HH_MM_SS = "15:04:05"
 const LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z = "2006-01-02T15:04:05.000Z"
+const LAYOUT_YYYY_MM_DDTHH_MM_SS = "2006-01-02 15:04:05"
 const LAYOUT_YYYY_MM_DDTHH_MM_SS_000 = "2006-01-02T15:04:05.000"
 
 /*
@@ -140,6 +141,14 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS_000, value)
+	return t
+}
+
+/*
+	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS
+*/
+func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS(value string) time.Time {
+	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS, value)
 	return t
 }
 
