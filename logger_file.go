@@ -68,6 +68,10 @@ type MongoObject2 struct {
 }
 
 func InsertAudit(object interface{}) {
+	if ConvertStringToBool(Godotenv("block_logger")) {
+		return
+	}
+
 	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
