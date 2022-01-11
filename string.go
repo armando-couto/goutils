@@ -113,7 +113,7 @@ func ValidateIfNotEmptyNumber(valor string) string {
 */
 func ValidateIfNotEmptyDate(data string) string {
 	if data == "" {
-		return "0001-01-01"
+		return DEFAULT_DATE
 	}
 	return data
 }
