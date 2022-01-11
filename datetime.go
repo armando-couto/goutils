@@ -124,6 +124,11 @@ func ConvertStringToTimeLayout_YYYY_MM_DD_HH_MM_SS(date time.Time) string {
 	return date.Format(LAYOUT_YYYY_MM_DD_HH_MM_SS)
 }
 
+func ConvertToTimeLayout_YYYY_MM_DD_HH_MM_SS(value string) time.Time {
+	t, _ := time.Parse(LAYOUT_YYYY_MM_DD_HH_MM_SS, value)
+	return t
+}
+
 /*
 	ConvertStringToTimeLayout_YYYY_MM_DD o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD
 */
