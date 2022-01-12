@@ -44,6 +44,11 @@ func ConvertkeepZeroToFloat64(value KeepZero) float64 {
 	return s
 }
 
+func ConvertkeepZeroToFloat64To4Decimal(value KeepZero) float64 {
+	s, _ := strconv.ParseFloat(fmt.Sprintf("%.4f", value), 64)
+	return s
+}
+
 /*
 	ConvertFloat64ToString4Decimal
 */
