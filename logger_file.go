@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -17,6 +18,7 @@ type MongoObject struct {
 	CreateFileDayInfo o antigo nome era: CreateFileDay
 */
 func CreateFileDayInfo(message string) {
+	message = strings.ReplaceAll(message, "\n", "")
 	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
@@ -40,6 +42,7 @@ func CreateFileDayInfo(message string) {
 }
 
 func CreateFileDayError(message string) {
+	message = strings.ReplaceAll(message, "\n", "")
 	if ConvertStringToBool(Godotenv("logger")) {
 		connection := ConnectionMongoDB()
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
