@@ -18,7 +18,7 @@ type Message struct {
 	Objects interface{}
 }
 
-func CreateFileDay(message Message) {
+func CreateFileDay(message *Message) {
 	message.Query = strings.ReplaceAll(message.Query, "\n", "")
 	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -30,10 +30,10 @@ func CreateFileDay(message Message) {
 	fmt.Println(message)
 }
 
-func FormatMessage(message Message) Message {
+func FormatMessage(message Message) *Message {
 	message.Log = &log.Logger{}
 	message.Log.SetFlags(log.LstdFlags | log.Lshortfile)
-	return message
+	return &message
 }
 
 type MongoObject2 struct {
