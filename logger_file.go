@@ -36,7 +36,7 @@ func FormatMessage(message Message) *Message {
 	return &message
 }
 
-func CreateFileDay2(message Message) {
+func CreateFileDay2(message Message, logger log.Logger) {
 	message.Query = strings.ReplaceAll(message.Query, "\n", "")
 	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
@@ -44,9 +44,14 @@ func CreateFileDay2(message Message) {
 	}
 	defer f.Close()
 
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.Println("dfdsfhdksfsdkfjsdkfsdf")
+	logger.Println("dfdsfhdksfsdkfjsdkfsdf")
 	fmt.Println(message)
+}
+
+func FormatMessage2(message Message) (Message, log.Logger) {
+	logger := log.Logger{}
+	logger.SetFlags(log.LstdFlags | log.Lshortfile)
+	return message, logger
 }
 
 type MongoObject2 struct {
