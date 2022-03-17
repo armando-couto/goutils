@@ -9,64 +9,28 @@ import (
 	"time"
 )
 
-type MongoObject struct {
-	Date    time.Time
-	Message string
-}
-
-/*
-	CreateFileDayInfo o antigo nome era: CreateFileDay
-*/
-func CreateFileDayInfo(message string) {
-	message = strings.ReplaceAll(message, "\n", "")
-	if ConvertStringToBool(Godotenv("logger")) {
-		connection := ConnectionMongoDB()
-		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
-		defer cancel()
-		defer connection.Client().Disconnect(ctx)
-		_, err := connection.Collection("infos").InsertOne(ctx, MongoObject{Date: time.Now(), Message: message})
-		if err != nil {
-			log.Println(err)
-		}
-	} else {
-		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-		if err != nil {
-			log.Println(err)
-		}
-		defer f.Close()
-
-		logger := log.New(f, "INFO\t", log.Ldate|log.Ltime)
-		logger.Println(message)
-		fmt.Println(message)
-	}
-}
-
-type MessageError struct {
+type Message struct {
 	Log     *log.Logger
 	File    string
 	Query   string
+	Info    string
 	Error   string
 	Objects interface{}
-	EnvDev  bool
 }
 
-func CreateFileDayError(message MessageError) {
+func CreateFileDay(message Message) {
 	message.Query = strings.ReplaceAll(message.Query, "\n", "")
-	// Se for FALSE não iremos imprimir dentro do arquivo de LOG que é versionado
-	if !message.EnvDev {
-		fmt.Println(message)
-	} else {
-		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-		if err != nil {
-			log.Println(err)
-		}
-		defer f.Close()
-
-		message.Log.Println(message)
+	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
 	}
+	defer f.Close()
+
+	message.Log.Println(message)
+	fmt.Println(message)
 }
 
-func FormatMessage(message MessageError) MessageError {
+func FormatMessage(message Message) Message {
 	message.Log.SetFlags(log.LstdFlags | log.Lshortfile)
 	return message
 }

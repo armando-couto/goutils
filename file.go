@@ -15,7 +15,7 @@ import (
 func ListFolderFiles(path string) []os.FileInfo {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{File: "ListFolderFiles(path)", Error: fmt.Sprint("a pasta '", path, "' não existe!")}))
+		CreateFileDay(FormatMessage(Message{File: "ListFolderFiles(path)", Error: fmt.Sprint("a pasta '", path, "' não existe!")}))
 	}
 	return files
 }
@@ -27,7 +27,7 @@ func ReadingFiles(path string, fileName string) string {
 	file, err := os.Open(fmt.Sprint(path, fileName))
 	if err != nil {
 		log.Fatal(err)
-		CreateFileDayError(FormatMessage(MessageError{File: "ReadingFiles(path, fileName)", Error: fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!")}))
+		CreateFileDay(FormatMessage(Message{File: "ReadingFiles(path, fileName)", Error: fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!")}))
 	}
 	defer file.Close()
 
@@ -40,9 +40,9 @@ func ReadingFiles(path string, fileName string) string {
 */
 func RemoveFilesOfPath(path string) {
 	if os.Remove(path) != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: "Problema ao remover do diretório local"}))
+		CreateFileDay(FormatMessage(Message{Error: "Problema ao remover do diretório local"}))
 	} else {
-		CreateFileDayError(FormatMessage(MessageError{Error: "Removido do local"}))
+		CreateFileDay(FormatMessage(Message{Error: "Removido do local"}))
 	}
 }
 
@@ -81,7 +81,7 @@ func CreateArchiveNodirectory(nomeDoArquivo string, conteudo string) error {
 */
 func IsError(err error) bool {
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
 	}
 	return err != nil
 }
@@ -98,5 +98,5 @@ func Backup(path, name, texto string) {
 
 	path_nome_arquivo_antigo := fmt.Sprint(path, name)
 	os.Remove(path_nome_arquivo_antigo)
-	CreateFileDayInfo(fmt.Sprint("Concluída a Leitura do Arquivo: ", name))
+	CreateFileDay(FormatMessage(Message{Info: fmt.Sprint("Concluída a Leitura do Arquivo: ", name)}))
 }

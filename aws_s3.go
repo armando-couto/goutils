@@ -35,10 +35,10 @@ func UpdloadInS3(file multipart.File, path, fileName string) string {
 		Body:   file,
 	})
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
 		return ""
 	}
-	CreateFileDayInfo(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
+	CreateFileDay(FormatMessage(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}))
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -60,7 +60,7 @@ func UpdloadInS3Base64(b64 string, path, fileName string) string {
 
 	dec, err := base64.StdEncoding.DecodeString(b64)
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
 		return ""
 	}
 	//file, header, err := c.Request.FormFile("photo")
@@ -72,10 +72,10 @@ func UpdloadInS3Base64(b64 string, path, fileName string) string {
 		Body:   bytes.NewBuffer(dec),
 	})
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
 		return ""
 	}
-	CreateFileDayInfo(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
+	CreateFileDay(FormatMessage(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}))
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -103,9 +103,9 @@ func UpdloadInS3Base64Byte(b64 []byte, path, fileName string) string {
 		Body:   bytes.NewBuffer(b64),
 	})
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
 		return ""
 	}
-	CreateFileDayInfo(fmt.Sprint("Upload do Arquivo: ", up.UploadID))
+	CreateFileDay(FormatMessage(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}))
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }

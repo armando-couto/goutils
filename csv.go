@@ -40,8 +40,7 @@ func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 		defer wgzp.Close()
 	}
 
-	CreateFileDayInfo(fmt.Sprint("Arquivo ", nomeArquivo, " gerado CSV.GZ"))
-
+	CreateFileDay(FormatMessage(Message{Info: fmt.Sprint("Arquivo ", nomeArquivo, " gerado CSV.GZ")}))
 	return nil
 }
 
@@ -51,7 +50,7 @@ func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 func CSVRead(pathFile string) [][]string {
 	f, err := os.Open(pathFile)
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
 	}
 	defer f.Close()
 
@@ -59,7 +58,7 @@ func CSVRead(pathFile string) [][]string {
 	arqReader.LazyQuotes = true
 	lines, err := arqReader.ReadAll()
 	if err != nil {
-		CreateFileDayError(FormatMessage(MessageError{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
+		CreateFileDay(FormatMessage(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
 	}
 	return lines
 }

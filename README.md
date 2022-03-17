@@ -136,8 +136,7 @@ ConvertIntToString(value int) Return string
 ### logger_file.go
 
 ```go
-CreateFileDayInfo(message string) Return void
-CreateFileDayError(message interface{}) Return void
+CreateFileDay(message interface{}) Return void
 ```
 
 ### mysql_connection.go
