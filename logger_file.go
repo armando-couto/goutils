@@ -47,12 +47,13 @@ type MessageError struct {
 	Query   string
 	Error   string
 	Objects interface{}
-	Dev     bool
+	EnvDev  bool
 }
 
 func CreateFileDayError(message MessageError) {
 	message.Query = strings.ReplaceAll(message.Query, "\n", "")
-	if message.Dev == true {
+	// Se for FALSE não iremos imprimir dentro do arquivo de LOG que é versionado
+	if !message.EnvDev {
 		fmt.Println(message)
 	} else {
 		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
