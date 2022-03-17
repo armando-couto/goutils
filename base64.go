@@ -15,7 +15,7 @@ func EncodeStringToBase64(value string) string {
 func DecodeBase64ToString(value string) string {
 	data, err := base64.StdEncoding.DecodeString(value)
 	if err != nil {
-		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
+		CreateFileDay(Message{Error: err.Error()})
 		return "ERRONOJSON"
 	}
 	return string(data)

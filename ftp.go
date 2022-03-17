@@ -17,17 +17,17 @@ import (
 func ListOfAvailableFilesNoFTP(remote string, port string, user string, pass string) (*ftp.ServerConn, error, []string) {
 	c, err := ftp.Dial(remote+":"+port, ftp.DialWithTimeout(60*time.Second))
 	if err != nil {
-		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
+		CreateFileDay(Message{Error: err.Error()})
 	}
 	err = c.Login(user, pass)
 	if err != nil {
-		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
+		CreateFileDay(Message{Error: err.Error()})
 	}
 
 	//var nome_arquivo string
 	list, _ := c.NameList("/")
 	if err := c.Quit(); err != nil {
-		CreateFileDay(FormatMessage(Message{Error: err.Error()}))
+		CreateFileDay(Message{Error: err.Error()})
 	}
 	return c, err, list
 }
