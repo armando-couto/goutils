@@ -10,7 +10,7 @@ import (
 )
 
 type Message struct {
-	Log     *log.Logger
+	Log     log.Logger
 	File    string
 	Query   string
 	Info    string
@@ -31,6 +31,7 @@ func CreateFileDay(message Message) {
 }
 
 func FormatMessage(message Message) Message {
+	message.Log = log.Logger{}
 	message.Log.SetFlags(log.LstdFlags | log.Lshortfile)
 	return message
 }
