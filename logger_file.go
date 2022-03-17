@@ -26,7 +26,7 @@ func CreateFileDay(message *Message) {
 	}
 	defer f.Close()
 
-	message.Log.Println(message)
+	message.Log.Println("dfdsfhdksfsdkfjsdkfsdf")
 	fmt.Println(message)
 }
 
