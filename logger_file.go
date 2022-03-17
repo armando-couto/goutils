@@ -47,18 +47,22 @@ type MessageError struct {
 	Query   string
 	Error   string
 	Objects interface{}
+	Dev     bool
 }
 
 func CreateFileDayError(message MessageError) {
 	message.Query = strings.ReplaceAll(message.Query, "\n", "")
-	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Println(err)
-	}
-	defer f.Close()
+	if message.Dev == true {
+		fmt.Println(message)
+	} else {
+		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			log.Println(err)
+		}
+		defer f.Close()
 
-	message.Log.Println(message)
-	fmt.Println(message)
+		message.Log.Println(message)
+	}
 }
 
 func FormatMessage(message MessageError) MessageError {
