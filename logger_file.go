@@ -51,7 +51,7 @@ func CreateFileDay2(message Message, logger *log.Logger) {
 func FormatMessage2(message Message) (Message, *log.Logger) {
 	var logger *log.Logger = new(log.Logger)
 	logger.SetFlags(log.LstdFlags | log.Lshortfile)
-	logger.Println("dfdsfhdksfsdkfjsdkfsdf")
+	log.Println("dfdsfhdksfsdkfjsdkfsdf")
 	return message, logger
 }
 
