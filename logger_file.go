@@ -41,28 +41,29 @@ func CreateFileDayInfo(message string) {
 	}
 }
 
-func CreateFileDayError(message string) {
-	message = strings.ReplaceAll(message, "\n", "")
-	if ConvertStringToBool(Godotenv("logger")) {
-		connection := ConnectionMongoDB()
-		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
-		defer cancel()
-		defer connection.Client().Disconnect(ctx)
-		_, err := connection.Collection("errors").InsertOne(ctx, MongoObject{Date: time.Now(), Message: message})
-		if err != nil {
-			log.Println(err)
-		}
-	} else {
-		f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-		if err != nil {
-			log.Println(err)
-		}
-		defer f.Close()
+type MessageError struct {
+	Log     *log.Logger
+	File    string
+	Query   string
+	Error   string
+	Objects interface{}
+}
 
-		logger := log.New(f, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-		logger.Println(message)
-		fmt.Println(message)
+func CreateFileDayError(message MessageError) {
+	message.Query = strings.ReplaceAll(message.Query, "\n", "")
+	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
 	}
+	defer f.Close()
+
+	message.Log.Println(message)
+	fmt.Println(message)
+}
+
+func FormatMessage(message MessageError) MessageError {
+	message.Log.SetFlags(log.LstdFlags | log.Lshortfile)
+	return message
 }
 
 type MongoObject2 struct {

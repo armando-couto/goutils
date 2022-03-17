@@ -51,7 +51,7 @@ func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 func CSVRead(pathFile string) [][]string {
 	f, err := os.Open(pathFile)
 	if err != nil {
-		CreateFileDayError("ERRO: Leitura arquivo CSV:" + err.Error())
+		CreateFileDayError(FormatMessage(MessageError{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
 	}
 	defer f.Close()
 
@@ -59,7 +59,7 @@ func CSVRead(pathFile string) [][]string {
 	arqReader.LazyQuotes = true
 	lines, err := arqReader.ReadAll()
 	if err != nil {
-		CreateFileDayError("ERRO: Leitura arquivo CSV:" + err.Error())
+		CreateFileDayError(FormatMessage(MessageError{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}))
 	}
 	return lines
 }
