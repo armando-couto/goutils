@@ -9,7 +9,7 @@ import (
 
 type Message struct {
 	File    string
-	Query   string
+	Script  string
 	Info    string
 	Error   string
 	Objects []interface{}
