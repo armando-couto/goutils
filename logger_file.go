@@ -12,7 +12,7 @@ type Message struct {
 	Query   string
 	Info    string
 	Error   string
-	Objects interface{}
+	Objects []interface{}
 }
 
 func CreateFileDay(message Message) {
