@@ -60,7 +60,6 @@ func UpdloadInS3NotTime(file multipart.File, path, fileName string) string {
 	//upload to the s3 bucket
 	up, err := uploader.Upload(&s3manager.UploadInput{
 		Bucket: aws.String(myBucket),
-		ACL:    aws.String("public-read"),
 		Key:    aws.String(fileName),
 		Body:   file,
 	})
