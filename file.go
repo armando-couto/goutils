@@ -26,7 +26,6 @@ func ListFolderFiles(path string) []os.FileInfo {
 func ReadingFiles(path string, fileName string) string {
 	file, err := os.Open(fmt.Sprint(path, fileName))
 	if err != nil {
-		log.Fatal(err)
 		CreateFileDay(Message{File: "ReadingFiles(path, fileName)", Error: fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!")})
 	}
 	defer file.Close()
