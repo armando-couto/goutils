@@ -132,7 +132,7 @@ func ConvertToTimeLayout_YYYY_MM_DD_HH_MM_SS(value string) time.Time {
 /*
 	ConvertStringToTimeLayout_YYYY_MM_DD o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD
 */
-func ConvertStringToTimeLayout_YYYY_MM_DD(date time.Time) string {
+func ConvertTimeToStringLayout_YYYY_MM_DD(date time.Time) string {
 	return date.Format(LAYOUT_YYYY_MM_DD)
 }
 
