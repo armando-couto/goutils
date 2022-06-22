@@ -11,7 +11,7 @@ require (
 	github.com/lib/pq v1.10.2
 	github.com/xdg/scram v1.0.5 // indirect
 	github.com/xdg/stringprep v1.0.3 // indirect
-	go.mongodb.org/mongo-driver v1.1.0
+	go.mongodb.org/mongo-driver v1.9.1
 	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	gorm.io/driver/postgres v1.3.7
 	gorm.io/gorm v1.23.6
