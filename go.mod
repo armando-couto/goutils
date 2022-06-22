@@ -13,7 +13,7 @@ require (
 	github.com/xdg/scram v1.0.5 // indirect
 	github.com/xdg/stringprep v1.0.3 // indirect
 	go.mongodb.org/mongo-driver v1.9.1
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
+	golang.org/x/crypto 05595931fe9d
 	gorm.io/driver/postgres v1.3.7
 	gorm.io/gorm v1.23.6
 )
