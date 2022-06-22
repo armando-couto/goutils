@@ -7,7 +7,7 @@ require (
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/jlaffaye/ftp v0.0.0-20210307004419-5d4190119067
+	github.com/jlaffaye/ftp v0.0.0-20220612151834-60a941566ce4
 	github.com/joho/godotenv v1.3.0
 	github.com/lib/pq v1.10.2
 	github.com/xdg/scram v1.0.5 // indirect
