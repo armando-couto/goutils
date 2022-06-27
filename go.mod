@@ -3,7 +3,7 @@ module github.com/armando-couto/goutils
 go 1.15
 
 require (
-	github.com/aws/aws-sdk-go v1.44.42
+	github.com/aws/aws-sdk-go v1.44.43
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/snappy v0.0.4 // indirect
@@ -13,7 +13,7 @@ require (
 	github.com/xdg/scram v1.0.5 // indirect
 	github.com/xdg/stringprep v1.0.3 // indirect
 	go.mongodb.org/mongo-driver v1.9.1
-	golang.org/x/crypto 05595931fe9d
+	golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 	gorm.io/driver/postgres v1.3.7
 	gorm.io/gorm v1.23.6
 )
