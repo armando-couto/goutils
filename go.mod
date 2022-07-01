@@ -3,7 +3,7 @@ module github.com/armando-couto/goutils
 go 1.15
 
 require (
-	github.com/aws/aws-sdk-go v1.44.45
+	github.com/aws/aws-sdk-go v1.44.47
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/golang/snappy v0.0.4 // indirect
