@@ -14,6 +14,6 @@ require (
 	github.com/xdg/stringprep v1.0.3 // indirect
 	go.mongodb.org/mongo-driver v1.9.1
 	golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
-	gorm.io/driver/postgres v1.3.7
+	gorm.io/driver/postgres v1.3.8
 	gorm.io/gorm v1.23.7
 )
