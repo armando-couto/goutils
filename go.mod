@@ -1,6 +1,6 @@
 module github.com/armando-couto/goutils
 
-go 1.15
+go 1.18
 
 require (
 	github.com/aws/aws-sdk-go v1.44.56
