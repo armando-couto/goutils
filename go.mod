@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.44.77
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.6.0
-	github.com/jlaffaye/ftp v0.0.0-20220630165035-11536801d1ff
+	github.com/jlaffaye/ftp v0.0.0-20220818164422-4d1d644cf19d
 	github.com/joho/godotenv v1.4.0
 	github.com/lib/pq v1.10.6
 	go.mongodb.org/mongo-driver v1.10.1
