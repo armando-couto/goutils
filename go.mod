@@ -8,7 +8,7 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/jlaffaye/ftp v0.0.0-20220904184306-99be0634ab9a
 	github.com/joho/godotenv v1.4.0
-	github.com/lib/pq v1.10.6
+	github.com/lib/pq v1.10.7
 	go.mongodb.org/mongo-driver v1.10.1
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90
 	gorm.io/driver/postgres v1.3.9
