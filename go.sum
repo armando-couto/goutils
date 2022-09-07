@@ -193,6 +193,8 @@ github.com/jlaffaye/ftp v0.0.0-20220829015825-b85cf1edccd4 h1:8bWaY08VCoFn17gezY
 github.com/jlaffaye/ftp v0.0.0-20220829015825-b85cf1edccd4/go.mod h1:hhq4G4crv+nW2qXtNYcuzLeOudG92Ps37HEKeg2e3lE=
 github.com/jlaffaye/ftp v0.0.0-20220904184306-99be0634ab9a h1:s4ryRQyC5HKZh6qkjNAFcvmD7gImK5bZuj/YZkXy1vw=
 github.com/jlaffaye/ftp v0.0.0-20220904184306-99be0634ab9a/go.mod h1:hhq4G4crv+nW2qXtNYcuzLeOudG92Ps37HEKeg2e3lE=
+github.com/jlaffaye/ftp v0.1.0 h1:DLGExl5nBoSFoNshAUHwXAezXwXBvFdx7/qwhucWNSE=
+github.com/jlaffaye/ftp v0.1.0/go.mod h1:hhq4G4crv+nW2qXtNYcuzLeOudG92Ps37HEKeg2e3lE=
 github.com/jmespath/go-jmespath v0.4.0 h1:BEgLn5cpjn8UN1mAw4NjwDrS35OdebyEtFe+9YPoQUg=
 github.com/jmespath/go-jmespath v0.4.0/go.mod h1:T8mJZnbsbmF+m6zOOFylbeCJqk5+pHWvzYPziyZiYoo=
 github.com/jmespath/go-jmespath/internal/testify v1.5.1/go.mod h1:L3OGu8Wl2/fWfCI6z80xFu9LTZmf1ZRjMHUOPmWr69U=
