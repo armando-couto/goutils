@@ -144,8 +144,6 @@ func UpdloadInS3ArqTxt(texto string, path, fileName string) string {
   // The session the S3 Uploader will use
   sess := ConnectAws()
 
-  //fileName = fmt.Sprint(time.Now().Format(LAYOUT_YYYYMMDDHHMMSS), fileName)
-
   // Caso tenha om PATH ai ele concatena
   if path != "" {
     fileName = fmt.Sprint(path, "/", fileName)
@@ -170,12 +168,3 @@ func UpdloadInS3ArqTxt(texto string, path, fileName string) string {
   CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
   return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
-
-
-//  myBucket := goutils.Godotenv("BUCKET_NAME")
-//  downloader := s3manager.NewDownloader(goutils.ConnectAws())
-//  _, err := downloader.Download(outFile, &s3.GetObjectInput{
-//    Bucket: aws.String(myBucket),
-//
-//    Key:    aws.String(fileName),
-//  }, Acl)
