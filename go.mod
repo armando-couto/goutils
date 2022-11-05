@@ -3,7 +3,7 @@ module github.com/armando-couto/goutils
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.128
+	github.com/aws/aws-sdk-go v1.44.131
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/jlaffaye/ftp v0.1.0
@@ -39,7 +39,7 @@ require (
 	github.com/xdg/scram v1.0.5 // indirect
 	github.com/xdg/stringprep v1.0.3 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
+	golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4 // indirect
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.4.0 // indirect
 )
