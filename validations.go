@@ -6,10 +6,9 @@ import "strings"
 	MaskCard6Initials o antigo nome era: MaskCard6DigitosIniciais
 */
 func MaskCard6Initials(cardString string) string {
-	s := strings.SplitN(cardString, " ", 4)
-	return s[0] + s[1][0:2] + "XXXXXX" + s[3]
+	s := strings.ReplaceAll(cardString, " ", "")
+	return s[0:6] + "XXXXXX" + s[len(s)-4:]
 }
-
 /*
 	MaskLastDigits o antigo nome era: MaskUltimosDigitos
 */
