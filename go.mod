@@ -10,7 +10,7 @@ require (
 	github.com/joho/godotenv v1.4.0
 	github.com/lib/pq v1.10.7
 	go.mongodb.org/mongo-driver v1.11.0
-	golang.org/x/crypto v0.2.0
+	golang.org/x/crypto v0.3.0
 	gorm.io/driver/postgres v1.4.5
 	gorm.io/gorm v1.24.1
 )
