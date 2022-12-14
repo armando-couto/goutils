@@ -13,7 +13,7 @@ var (
 )
 
 /*
-*
+	 rand.Seed(time.Now().Unix())
 Exemplo: GeneratePassword(32, 2, 2)
 */
 func GeneratePassword(passwordLength, minNum, minUpperCase int) string {
