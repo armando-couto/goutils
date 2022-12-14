@@ -200,3 +200,9 @@ ValidateTelephone(telefone string) Return string
 ZipFiles(filename string, files []string) Return error
 AddFileToZip(zipWriter *zip.Writer, filename string) Return error
 ```
+
+### password.go
+
+```go
+GeneratePassword(passwordLength, minNum, minUpperCase int) Return string
+```
