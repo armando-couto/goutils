@@ -7,7 +7,7 @@ require (
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.7.0
 	github.com/jlaffaye/ftp v0.1.0
-	github.com/joho/godotenv v1.5.0
+	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.7
 	go.mongodb.org/mongo-driver v1.11.1
 	golang.org/x/crypto v0.5.0
