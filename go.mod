@@ -11,7 +11,7 @@ require (
 	github.com/lib/pq v1.10.7
 	go.mongodb.org/mongo-driver v1.11.1
 	golang.org/x/crypto v0.6.0
-	gorm.io/driver/postgres v1.4.6
+	gorm.io/driver/postgres v1.4.7
 	gorm.io/gorm v1.24.5
 )
 
