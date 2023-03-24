@@ -12,7 +12,7 @@ require (
 	go.mongodb.org/mongo-driver v1.11.3
 	golang.org/x/crypto v0.7.0
 	gorm.io/driver/postgres v1.5.0
-	gorm.io/gorm v1.24.7-0.20230323060235-5d1cdfef2e6c
+	gorm.io/gorm v1.24.7-0.20230324020705-b444011d094d
 )
 
 require (
