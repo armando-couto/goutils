@@ -3,16 +3,16 @@ module github.com/armando-couto/goutils
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.202
+	github.com/aws/aws-sdk-go v1.44.229
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.7.0
 	github.com/jlaffaye/ftp v0.1.0
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.7
-	go.mongodb.org/mongo-driver v1.11.2
-	golang.org/x/crypto v0.6.0
-	gorm.io/driver/postgres v1.4.7
-	gorm.io/gorm v1.24.5
+	go.mongodb.org/mongo-driver v1.11.3
+	golang.org/x/crypto v0.7.0
+	gorm.io/driver/postgres v1.5.0
+	gorm.io/gorm v1.24.7-0.20230324020705-b444011d094d
 )
 
 require (
@@ -27,7 +27,7 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgtype v1.12.0 // indirect
 	github.com/jackc/pgx/v4 v4.17.2 // indirect
-	github.com/jackc/pgx/v5 v5.2.0 // indirect
+	github.com/jackc/pgx/v5 v5.3.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
@@ -41,7 +41,7 @@ require (
 	github.com/xdg/scram v1.0.5 // indirect
 	github.com/xdg/stringprep v1.0.3 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
-	golang.org/x/sync v0.0.0-20220923202941-7f9b1623fab7 // indirect
-	golang.org/x/sys v0.5.0 // indirect
-	golang.org/x/text v0.7.0 // indirect
+	golang.org/x/sync v0.1.0 // indirect
+	golang.org/x/sys v0.6.0 // indirect
+	golang.org/x/text v0.8.0 // indirect
 )
