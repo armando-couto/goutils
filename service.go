@@ -17,7 +17,7 @@ func (p program) Stop(s service.Service) error {
 	return nil
 }
 
-func Execute(serviceConfig *service.Config) {
+func ExecuteService(serviceConfig *service.Config) {
 	prg := &program{}
 	s, err := service.New(prg, serviceConfig)
 	if err != nil {
