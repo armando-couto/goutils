@@ -8,12 +8,12 @@ import (
 type program struct{}
 
 func (p program) Start(s service.Service) error {
-	fmt.Println(s.String() + " started")
+	fmt.Println(s.String() + " Rodando!")
 	return nil
 }
 
 func (p program) Stop(s service.Service) error {
-	fmt.Println(s.String() + " stopped")
+	fmt.Println(s.String() + " Parado!")
 	return nil
 }
 
