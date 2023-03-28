@@ -3,11 +3,12 @@ module github.com/armando-couto/goutils
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.229
+	github.com/aws/aws-sdk-go v1.44.230
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.7.0
 	github.com/jlaffaye/ftp v0.1.0
 	github.com/joho/godotenv v1.5.1
+	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.7
 	go.mongodb.org/mongo-driver v1.11.3
 	golang.org/x/crypto v0.7.0
@@ -31,7 +32,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	github.com/kardianos/service v1.2.2 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/pkg/errors v0.9.1 // indirect
