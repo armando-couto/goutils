@@ -24,10 +24,11 @@ const (
 	LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z = "2006-01-02T15:04:05.000Z"
 	LAYOUT_YYYY_MM_DDTHH_MM_SS      = "2006-01-02 15:04:05"
 	LAYOUT_YYYY_MM_DDTHH_MM_SS_000  = "2006-01-02T15:04:05.000"
+	LAYOUTYYYYMMDDTHHMMSS           = "2006-01-02T15:04:05"
 )
 
 /*
-	ConvertStringToTimeLayoutDDMMYYYY
+ConvertStringToTimeLayoutDDMMYYYY
 */
 func ConvertStringToTimeLayoutDDMMYYYY(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_DDMMYYYY, value)
@@ -35,7 +36,7 @@ func ConvertStringToTimeLayoutDDMMYYYY(value string) time.Time {
 }
 
 /*
-	ConvertTimeToStringLayoutDD_MM_YYYY
+ConvertTimeToStringLayoutDD_MM_YYYY
 */
 func ConvertTimeToStringLayoutDD_MM_YYYY(date time.Time) string {
 	return date.Format(LAYOUT_DD_MM_YYYY)
@@ -46,7 +47,7 @@ func ConvertTimeToStringLayoutMM_DD_YYYY_HH_MM(date time.Time) string {
 }
 
 /*
-	ConvertStringToTimeLayoutDD_MM_YYYY
+ConvertStringToTimeLayoutDD_MM_YYYY
 */
 func ConvertStringToTimeLayoutDD_MM_YYYY(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_DD_MM_YYYY, value)
@@ -54,7 +55,7 @@ func ConvertStringToTimeLayoutDD_MM_YYYY(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS
+ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS
 */
 func ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_DD_MM_YYYY_HH_MM_SS, value)
@@ -62,7 +63,7 @@ func ConvertStringToTimeLayoutDD_MM_YYYY_HH_MM_SS(value string) time.Time {
 }
 
 /*
-	ConvertStringDD_MM_YYYY
+ConvertStringDD_MM_YYYY
 */
 func ConvertStringDD_MM_YYYY(date string) time.Time {
 	t, _ := time.Parse(LAYOUT_DD_MM_YYYY, date)
@@ -70,7 +71,7 @@ func ConvertStringDD_MM_YYYY(date string) time.Time {
 }
 
 /*
-	ConverTimeToStrinLayoutYYYY_MM_DD
+ConverTimeToStrinLayoutYYYY_MM_DD
 */
 func ConverTimeToStrinLayoutYYYY_MM_DD(data time.Time) string {
 	data.Format(LAYOUT_YYYY_MM_DD)
@@ -78,7 +79,7 @@ func ConverTimeToStrinLayoutYYYY_MM_DD(data time.Time) string {
 }
 
 /*
-	ConvertStringToTimeLayoutYYYYMMDD
+ConvertStringToTimeLayoutYYYYMMDD
 */
 func ConvertStringToTimeLayoutYYYYMMDD(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYYMMDD, value)
@@ -86,7 +87,7 @@ func ConvertStringToTimeLayoutYYYYMMDD(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutYYYY_MM_DD
+ConvertStringToTimeLayoutYYYY_MM_DD
 */
 func ConvertStringToTimeLayoutYYYY_MM_DD(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYY_MM_DD, value)
@@ -94,7 +95,7 @@ func ConvertStringToTimeLayoutYYYY_MM_DD(value string) time.Time {
 }
 
 /*
-	ConverTimeToStrinLayoutYYYYMMDD
+ConverTimeToStrinLayoutYYYYMMDD
 */
 func ConverTimeToStrinLayoutYYYYMMDD(data time.Time) string {
 	data.Format(LAYOUT_YYYYMMDD)
@@ -102,7 +103,7 @@ func ConverTimeToStrinLayoutYYYYMMDD(data time.Time) string {
 }
 
 /*
-	ConvertStringToTimeLayoutYYMMDDHHMMSS
+ConvertStringToTimeLayoutYYMMDDHHMMSS
 */
 func ConvertStringToTimeLayoutYYMMDDHHMMSS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYMMDDHHMMSS, value)
@@ -110,7 +111,7 @@ func ConvertStringToTimeLayoutYYMMDDHHMMSS(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutYYYYMMDDHHMMSS
+ConvertStringToTimeLayoutYYYYMMDDHHMMSS
 */
 func ConvertStringToTimeLayoutYYYYMMDDHHMMSS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYYMMDDHHMMSS, value)
@@ -118,7 +119,7 @@ func ConvertStringToTimeLayoutYYYYMMDDHHMMSS(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayout_YYYY_MM_DD_HH_MM_SS o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD_HH_MM_SS
+ConvertStringToTimeLayout_YYYY_MM_DD_HH_MM_SS o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD_HH_MM_SS
 */
 func ConvertStringToTimeLayout_YYYY_MM_DD_HH_MM_SS(date time.Time) string {
 	return date.Format(LAYOUT_YYYY_MM_DD_HH_MM_SS)
@@ -130,14 +131,14 @@ func ConvertToTimeLayout_YYYY_MM_DD_HH_MM_SS(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayout_YYYY_MM_DD o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD
+ConvertStringToTimeLayout_YYYY_MM_DD o antigo nome era: ConvertStringToTimeLAYOUT_YYYY_MM_DD
 */
 func ConvertTimeToStringLayout_YYYY_MM_DD(date time.Time) string {
 	return date.Format(LAYOUT_YYYY_MM_DD)
 }
 
 /*
-	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z
+ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS_000Z, value)
@@ -145,7 +146,7 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000Z(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000
+ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS_000, value)
@@ -153,7 +154,7 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS_000(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS
+ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS
 */
 func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS, value)
@@ -161,14 +162,22 @@ func ConvertStringToTimeLayoutYYYY_MM_DDTHH_MM_SS(value string) time.Time {
 }
 
 /*
-	ConvertTimeToStringLayoutYYYY_MM_DDTHH_MM_SS_000
+ConvertStringToTimeLayoutYYYYMMDDTHHMMSS
+*/
+func ConvertStringToTimeLayoutYYYYMMDDTHHMMSS(value string) time.Time {
+	t, _ := time.Parse(LAYOUTYYYYMMDDTHHMMSS, value)
+	return t
+}
+
+/*
+ConvertTimeToStringLayoutYYYY_MM_DDTHH_MM_SS_000
 */
 func ConvertTimeToStringLayoutYYYY_MM_DDTHH_MM_SS_000(date time.Time) string {
 	return date.Format(LAYOUT_YYYY_MM_DDTHH_MM_SS_000)
 }
 
 /*
-	ConvertStringToTimeLayoutHHMMSS
+ConvertStringToTimeLayoutHHMMSS
 */
 func ConvertStringToTimeLayoutHHMMSS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_HHMMSS, value)
@@ -176,7 +185,7 @@ func ConvertStringToTimeLayoutHHMMSS(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutHH_MM_SS
+ConvertStringToTimeLayoutHH_MM_SS
 */
 func ConvertStringToTimeLayoutHH_MM_SS(value string) time.Time {
 	t, _ := time.Parse(LAYOUT_HH_MM_SS, value)
@@ -184,15 +193,15 @@ func ConvertStringToTimeLayoutHH_MM_SS(value string) time.Time {
 }
 
 /*
-	ConvertStringToTimeLayoutDDMMYYYYHHMMSS
+ConvertStringToTimeLayoutDDMMYYYYHHMMSS
 */
 func ConvertStringToTimeLayoutDDMMYYYYHHMMSS(d time.Time, h time.Time) time.Time {
 	return time.Date(d.Year(), d.Month(), d.Day(), h.Hour(), h.Minute(), h.Second(), 0, time.UTC)
 }
 
 /*
-	RangeDate returns a date range function over start date to end date inclusive.
-	After the end of the range, the range function returns a zero date, date.IsZero() is true.
+RangeDate returns a date range function over start date to end date inclusive.
+After the end of the range, the range function returns a zero date, date.IsZero() is true.
 */
 func RangeDate(end, start time.Time) func() time.Time {
 	y, m, d := start.Date()
@@ -211,14 +220,14 @@ func RangeDate(end, start time.Time) func() time.Time {
 }
 
 /*
-	DatePlusTime
+DatePlusTime
 */
 func DatePlusTime(date, timeOfDay time.Time) (time.Time, error) {
 	return time.Parse("2006-01-02 15:04:05", date.Format("2006-01-02")+" "+timeOfDay.Format("15:04:05"))
 }
 
 /*
-	Qual é o dia da Segunda-feira da data que passou
+Qual é o dia da Segunda-feira da data que passou
 */
 func WeekStartDate(date time.Time) time.Time {
 	if int(time.Sunday) == 0 { // Caso seja Domingo jogar para segunda
@@ -231,7 +240,7 @@ func WeekStartDate(date time.Time) time.Time {
 }
 
 /*
-	Qual é o dia da Sexta-feira da data que passou
+Qual é o dia da Sexta-feira da data que passou
 */
 func WeekEndDate(date time.Time) time.Time {
 	offset := int(time.Friday) - int(date.Weekday())
