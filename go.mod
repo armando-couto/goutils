@@ -9,7 +9,7 @@ require (
 	github.com/jlaffaye/ftp v0.1.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kardianos/service v1.2.2
-	github.com/lib/pq v1.10.7
+	github.com/lib/pq v1.10.8
 	go.mongodb.org/mongo-driver v1.11.4
 	golang.org/x/crypto v0.8.0
 	gorm.io/driver/postgres v1.5.0
