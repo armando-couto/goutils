@@ -65,7 +65,7 @@ func ConnectionBDPostgreSQLWithSSL() *sql.DB {
 	err = db.Ping()
 	if err != nil {
 		time.Sleep(2 * time.Second)
-		return ConnectionBDPostgreSQL()
+		return ConnectionBDPostgreSQLWithSSL()
 	}
 
 	return db
