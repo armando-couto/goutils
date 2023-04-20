@@ -13,7 +13,7 @@ import (
 /*
 ConnectionBDPostgreSQL o antigo nome era: ConexaoDB
 */
-func ConnectionBDPostgreSQL() *sql.DB {
+func ConnectionBDPostgreSQL(applicationName string) *sql.DB {
 	var host, dbname, user, password string
 	var port int
 
@@ -23,7 +23,7 @@ func ConnectionBDPostgreSQL() *sql.DB {
 	user = Godotenv("user")
 	password = Godotenv("password")
 
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable application_name=%s", host, port, user, password, dbname, applicationName)
 
 	db, err := sql.Open("postgres", psqlInfo)
 	db.SetMaxOpenConns(5)
@@ -36,7 +36,7 @@ func ConnectionBDPostgreSQL() *sql.DB {
 	err = db.Ping()
 	if err != nil {
 		time.Sleep(2 * time.Second)
-		return ConnectionBDPostgreSQL()
+		return ConnectionBDPostgreSQL(applicationName)
 	}
 
 	return db
