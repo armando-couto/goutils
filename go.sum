@@ -444,6 +444,8 @@ github.com/aws/aws-sdk-go v1.44.312 h1:llrElfzeqG/YOLFFKjg1xNpZCFJ2xraIi3PqSuP+9
 github.com/aws/aws-sdk-go v1.44.312/go.mod h1:aVsgQcEevwlmQ7qHE9I3h+dtQgpqhFB+i8Phjh7fkwI=
 github.com/aws/aws-sdk-go v1.44.313 h1:u6EuNQqgAmi09GEZ5g/XGHLF0XV31WcdU5rnHyIBHBc=
 github.com/aws/aws-sdk-go v1.44.313/go.mod h1:aVsgQcEevwlmQ7qHE9I3h+dtQgpqhFB+i8Phjh7fkwI=
+github.com/aws/aws-sdk-go v1.44.314 h1:d/5Jyk/Fb+PBd/4nzQg0JuC2W4A0knrDIzBgK/ggAow=
+github.com/aws/aws-sdk-go v1.44.314/go.mod h1:aVsgQcEevwlmQ7qHE9I3h+dtQgpqhFB+i8Phjh7fkwI=
 github.com/cockroachdb/apd v1.1.0/go.mod h1:8Sl8LxpKi29FqWXR16WEFZRNSz3SoPzUzeMeY4+DwBQ=
 github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
 github.com/coreos/go-systemd v0.0.0-20190719114852-fd7a80b32e1f/go.mod h1:F5haX7vjVVG0kc13fIWeqUViNPyEJxv/OmvnBo0Yme4=
