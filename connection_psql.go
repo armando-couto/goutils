@@ -42,6 +42,35 @@ func ConnectionBDPostgreSQL(applicationName string) *sql.DB {
 	return db
 }
 
+func ConnectionBDPostgreSQLRead(applicationName string) *sql.DB {
+	var host, dbname, user, password string
+	var port int
+
+	host = Godotenv("host_read")
+	dbname = Godotenv("dbname_read")
+	port, _ = strconv.Atoi(Godotenv("port_banco_read"))
+	user = Godotenv("user_read")
+	password = Godotenv("password_read")
+
+	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable application_name=%s", host, port, user, password, dbname, applicationName)
+
+	db, err := sql.Open("postgres", psqlInfo)
+	db.SetMaxOpenConns(5)
+	db.SetMaxIdleConns(1)
+	db.SetConnMaxLifetime(1 * time.Minute)
+	if err != nil {
+		panic(err)
+	}
+
+	err = db.Ping()
+	if err != nil {
+		time.Sleep(2 * time.Second)
+		return ConnectionBDPostgreSQL(applicationName)
+	}
+
+	return db
+}
+
 func ConnectionBDPostgreSQLWithSSL() *sql.DB {
 	var host, dbname, user, password string
 	var port int
