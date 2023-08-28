@@ -1,4 +1,4 @@
-module github.com/armando-couto/goutils/v2
+module github.com/armando-couto/goutils
 
 go 1.19
 
