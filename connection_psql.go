@@ -29,7 +29,7 @@ func ConnectionBDPostgreSQL(applicationName string) *sql.DB {
 	password = Godotenv("password")
 
 	for _, host := range hosts {
-		psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable application_name=%s", host, port, user, password, dbname, applicationName)
+		psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s application_name=%s sslmode=disable", host, port, user, password, dbname, applicationName)
 
 		db, err := sql.Open("postgres", psqlInfo)
 		db.SetMaxOpenConns(5)
@@ -45,15 +45,12 @@ func ConnectionBDPostgreSQL(applicationName string) *sql.DB {
 			return ConnectionBDPostgreSQL(applicationName)
 		}
 
-		var tableName string
-		// Buscamos uma tabela do banco de dados
-		err = db.QueryRow(`SELECT table_name FROM information_schema.role_table_grants WHERE table_schema='public' order by table_name LIMIT 1;`).Scan(&tableName)
-		if err == nil {
-			// Executamos um update dentro de umsa transação e logo em seguida é dado rollback, caso não dê erro quer dizer que é uma instância de gravação.
-			_, err = db.Exec(`BEGIN; UPDATE public.` + tableName + ` SET id = id WHERE TRUE AND id IN (SELECT id FROM public.` + tableName + ` ORDER BY id LIMIT 1); ROLLBACK;`)
-			if err == nil {
-				return db
-			}
+		var notReadOnly bool
+		// Quando a função pg_is_in_recovery() é chamada e retorna FALSE quer dizer que é uma instância de ESCRITA,
+		// se retornar TRUE quer dizer que é somente de LEITURA.
+		err = db.QueryRow(`SELECT pg_is_in_recovery();`).Scan(&notReadOnly)
+		if err == nil && notReadOnly == false {
+			return db
 		}
 	}
 
