@@ -1,7 +1,7 @@
 package goutils
 
 /*
-	ContainsToStringInArray o antigo nome era: Contains
+ContainsToStringInArray o antigo nome era: Contains
 */
 func ContainsToStringInArray(a []string, x string) int {
 	count := 0
@@ -11,4 +11,14 @@ func ContainsToStringInArray(a []string, x string) int {
 		}
 	}
 	return count
+}
+
+// Todos os tipos precisam ser comparaveis
+func ContainsInArray[T comparable](array []T, target T) bool {
+	for _, itemArray := range array {
+		if itemArray == target {
+			return true
+		}
+	}
+	return false
 }
