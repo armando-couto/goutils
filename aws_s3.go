@@ -1,14 +1,16 @@
 package goutils
 
 import (
-  "bytes"
-  "encoding/base64"
-  "fmt"
-  "github.com/aws/aws-sdk-go/aws"
-  "github.com/aws/aws-sdk-go/service/s3/s3manager"
-  "mime/multipart"
-  "strings"
-  "time"
+	"bytes"
+	"encoding/base64"
+	"fmt"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"mime/multipart"
+	"os"
+	"strings"
+	"time"
 )
 
 func UpdloadInS3(file multipart.File, path, fileName string) string {
@@ -141,30 +143,49 @@ func UpdloadInS3Base64Byte(b64 []byte, path, fileName string) string {
 }
 
 func UpdloadInS3ArqTxt(texto string, path, fileName string) string {
-  // The session the S3 Uploader will use
-  sess := ConnectAws()
+	// The session the S3 Uploader will use
+	sess := ConnectAws()
 
-  // Caso tenha om PATH ai ele concatena
-  if path != "" {
-    fileName = fmt.Sprint(path, "/", fileName)
-  }
+	// Caso tenha om PATH ai ele concatena
+	if path != "" {
+		fileName = fmt.Sprint(path, "/", fileName)
+	}
 
-  // Create an uploader with the session and default options
-  uploader := s3manager.NewUploader(sess)
+	// Create an uploader with the session and default options
+	uploader := s3manager.NewUploader(sess)
 
-  myBucket := Godotenv("BUCKET_NAME")
+	myBucket := Godotenv("BUCKET_NAME")
 
-  //upload to the s3 bucket
-  up, err := uploader.Upload(&s3manager.UploadInput{
-    Bucket: aws.String(myBucket),
-    ACL:    aws.String("public-read"),
-    Key:    aws.String(fileName),
-    Body:   strings.NewReader(texto),
-  })
-  if err != nil {
-    CreateFileDay(Message{Error: err.Error()})
-    return ""
-  }
-  CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
-  return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
+	//upload to the s3 bucket
+	up, err := uploader.Upload(&s3manager.UploadInput{
+		Bucket: aws.String(myBucket),
+		ACL:    aws.String("public-read"),
+		Key:    aws.String(fileName),
+		Body:   strings.NewReader(texto),
+	})
+	if err != nil {
+		CreateFileDay(Message{Error: err.Error()})
+		return ""
+	}
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
+}
+
+func DownloadFromS3(fileName, localFilePath string) error {
+	sess := ConnectAws()
+	downloader := s3.New(sess)
+
+	file, err := os.Create(localFilePath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	bucketName := Godotenv("BUCKET_NAME")
+	_, err = downloader.GetObject(&s3.GetObjectInput{
+		Bucket: aws.String(bucketName),
+		Key:    aws.String(fileName),
+	})
+
+	return err
 }
