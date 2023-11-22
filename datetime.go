@@ -1,6 +1,9 @@
 package goutils
 
 import (
+	"errors"
+	"fmt"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -256,4 +259,60 @@ func WeekEndDate(date time.Time) time.Time {
 	offset := int(time.Friday) - int(date.Weekday())
 	result := date.Add(time.Duration(offset*24) * time.Hour)
 	return result
+}
+
+func ConvertDateToBrazilFormat(date any) (string, error) {
+	formats := []string{
+		"0001-01-01",
+		"02012006",
+		"02/01/2006",
+		"02/01/2006 15:04:05",
+		"2006-01-02 15:04:05",
+		"01-02-2006 15:04",
+		"20060102",
+		"060102150405",
+		"20060102150405",
+		"200601",
+		"2006-01-02",
+		"060102",
+		"150405",
+		"15",
+		"15:04:05",
+		"2006-01-02 15:04:05",
+		"02-01-2006",
+	}
+
+	typeDate := reflect.TypeOf(date)
+	var dateConverted string
+
+	switch typeDate.Kind() {
+	case reflect.String:
+		dateString := date.(string)
+		if strings.TrimSpace(dateString) != "" {
+			if strings.ContainsAny(dateString, "T") {
+				dateString = strings.Split(dateString, "T")[0]
+			}
+
+			for _, format := range formats {
+				t, err := time.Parse(format, dateString)
+
+				if err == nil {
+					dateConverted = t.Format("02/01/2006")
+					return dateConverted, nil
+				}
+			}
+		} else if strings.TrimSpace(dateString) == "" {
+			return "", nil
+		}
+		return "", errors.New(fmt.Sprint("error to convert date" + dateString))
+
+	case reflect.Struct:
+		if typeDate == reflect.TypeOf(time.Time{}) {
+			dateConverted = date.(time.Time).Format("02/01/2006")
+		}
+	default:
+		return "", errors.New("error to convert date; time is unknown")
+	}
+
+	return dateConverted, nil
 }
