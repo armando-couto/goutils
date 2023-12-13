@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"encoding/base64"
+	"fmt"
 )
 
 // Chave e IV devem ter tamanhos específicos para AES-256 (32 bytes para chave e 16 bytes para IV)
@@ -12,25 +14,25 @@ type Crypt struct {
 	Iv  []byte
 }
 
-func (crypt Crypt) Encrypt(data []byte) ([]byte, error) {
+func (crypt Crypt) Encrypt(data []byte) (string, error) {
 	block, err := aes.NewCipher(crypt.Key)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	// Preencher o bloco com dados
 	data = pad(data, block.BlockSize())
 
 	// Criar um modo de cifra em bloco com o bloco e o IV
-	mode := cipher.NewCBCEncrypter(block, crypt.Iv)
+	mode := cipher.NewCFBEncrypter(block, crypt.Iv)
 
 	// Criar um slice para o texto cifrado (tamanho igual ao texto original)
 	ciphertext := make([]byte, len(data))
 
 	// Criptografar os dados
-	mode.CryptBlocks(ciphertext, data)
+	mode.XORKeyStream(ciphertext, data)
 
-	return ciphertext, nil
+	return base64.StdEncoding.EncodeToString(append(crypt.Iv, ciphertext...)), nil
 }
 
 func pad(data []byte, blockSize int) []byte {
@@ -39,20 +41,32 @@ func pad(data []byte, blockSize int) []byte {
 	return append(data, pad...)
 }
 
-func (crypt Crypt) Decrypt(data []byte) ([]byte, error) {
+func (crypt Crypt) Decrypt(encryptedData string) ([]byte, error) {
+	// Decodifica o dado criptografado de Base64
+	data, err := base64.StdEncoding.DecodeString(encryptedData)
+	if err != nil {
+		return nil, err
+	}
+
+	// Cria um novo bloco de cifra AES
 	block, err := aes.NewCipher(crypt.Key)
 	if err != nil {
 		return nil, err
 	}
 
+	// Verifica se o tamanho dos dados é válido
+	if len(data) < aes.BlockSize {
+		return nil, fmt.Errorf("texto cifrado muito curto")
+	}
+
 	// Criar um modo de cifra em bloco com o bloco e o IV
-	mode := cipher.NewCBCDecrypter(block, crypt.Iv)
+	mode := cipher.NewCFBDecrypter(block, crypt.Iv)
 
 	// Criar um slice para o texto decifrado (tamanho igual ao texto cifrado)
 	decrypted := make([]byte, len(data))
 
 	// Decifrar os dados
-	mode.CryptBlocks(decrypted, data)
+	mode.XORKeyStream(decrypted, data)
 
 	// Remover o preenchimento
 	decrypted = unpad(decrypted)
