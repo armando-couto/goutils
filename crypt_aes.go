@@ -62,6 +62,9 @@ func (crypt Crypt) Decrypt(encryptedData string) ([]byte, error) {
 	// Criar um modo de cifra em bloco com o bloco e o IV
 	mode := cipher.NewCFBDecrypter(block, crypt.Iv)
 
+	// Extrai o vetor de inicialização (IV) do dado criptografado
+	data = data[aes.BlockSize:]
+
 	// Criar um slice para o texto decifrado (tamanho igual ao texto cifrado)
 	decrypted := make([]byte, len(data))
 
