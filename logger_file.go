@@ -34,4 +34,11 @@ func CreateFileDay(message Message) {
 	logger := log.New(f, prefix, log.Ldate|log.Ltime)
 	logger.Println(message)
 	fmt.Println(message)
+
+	// Sempre que dá essa mensagem é por que está sem permissão no banco para executar essas operacoes, ai a aplicação será encerrada
+	if message.Error == "pq: cannot execute INSERT in a read-only transaction" ||
+		message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
+		message.Error == "pq: cannot execute DELETE in a read-only transaction" {
+		os.Exit(0)
+	}
 }
