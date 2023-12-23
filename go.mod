@@ -3,7 +3,7 @@ module github.com/armando-couto/goutils
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.49.3
+	github.com/aws/aws-sdk-go v1.49.9
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/jlaffaye/ftp v0.2.0
@@ -11,7 +11,7 @@ require (
 	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.9
 	go.mongodb.org/mongo-driver v1.13.1
-	golang.org/x/crypto v0.16.0
+	golang.org/x/crypto v0.17.0
 	gorm.io/driver/postgres v1.5.4
 	gorm.io/gorm v1.25.5
 )
