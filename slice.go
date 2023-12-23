@@ -19,3 +19,8 @@ func IsInList(value string, list []string) bool {
 	}
 	return false
 }
+
+// Função para adicionar um elemento a uma slice apontada por um ponteiro
+func AddElementStringWithReference(slicePointer *[]string, element string) {
+	*slicePointer = append(*slicePointer, element)
+}
