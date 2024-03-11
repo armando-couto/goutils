@@ -3,7 +3,7 @@ module github.com/armando-couto/goutils
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.50.35
+	github.com/aws/aws-sdk-go v1.50.36
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.8.0
 	github.com/jlaffaye/ftp v0.2.0
