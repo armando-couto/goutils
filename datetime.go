@@ -206,6 +206,24 @@ func ConvertStringToTimeLayoutHH_MM_SS(value string) time.Time {
 }
 
 /*
+ConvertStringToTimeLayoutHH_MM_SS
+*/
+func DecreaseNHours(value string) string {
+	// Parsing da string para um objeto time.Time
+	data, err := time.Parse(LAYOUT_YYYY_MM_DDTHH_MM_SS, value)
+	if err != nil {
+		fmt.Println("Erro ao fazer o parsing da data:", err)
+		return ""
+	}
+
+	// Subtrair 3 horas
+	novaData := data.Add(-3 * time.Hour)
+
+	// Formatando a nova data como string
+	return novaData.Format(LAYOUT_YYYY_MM_DDTHH_MM_SS)
+}
+
+/*
 ConvertStringToTimeLayoutDDMMYYYYHHMMSS
 */
 func ConvertStringToTimeLayoutDDMMYYYYHHMMSS(d time.Time, h time.Time) time.Time {
