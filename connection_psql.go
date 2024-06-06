@@ -96,7 +96,7 @@ func ConnectionBDPostgreSQLLog(applicationName, sslMode string, readOnly bool) *
 		err = db.Ping()
 		if err != nil {
 			time.Sleep(2 * time.Second)
-			return ConnectionBDPostgreSQL(applicationName, sslMode, readOnly)
+			return ConnectionBDPostgreSQLLog(applicationName, sslMode, readOnly)
 		}
 
 		var notReadOnly bool
