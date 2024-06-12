@@ -12,7 +12,7 @@ require (
 	github.com/lib/pq v1.10.9
 	go.mongodb.org/mongo-driver v1.15.0
 	golang.org/x/crypto v0.24.0
-	gorm.io/driver/postgres v1.5.8
+	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.10
 )
 
