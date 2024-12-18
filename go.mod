@@ -11,7 +11,7 @@ require (
 	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.9
 	go.mongodb.org/mongo-driver v1.17.1
-	golang.org/x/crypto v0.30.0
+	golang.org/x/crypto v0.31.0
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
 )
