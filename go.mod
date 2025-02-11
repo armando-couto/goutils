@@ -10,7 +10,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.9
-	go.mongodb.org/mongo-driver v1.17.2
+	go.mongodb.org/mongo-driver/v2 v2.0.0
 	go.mongodb.org/mongo-driver/v2 v2.0.0
 	golang.org/x/crypto v0.33.0
 	gorm.io/driver/postgres v1.5.11
