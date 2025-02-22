@@ -1,6 +1,6 @@
 module github.com/armando-couto/goutils
 
-go 1.21
+go 1.23.0
 
 toolchain go1.24.0
 
@@ -12,9 +12,9 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.9
+	go.mongodb.org/mongo-driver v1.17.2
 	go.mongodb.org/mongo-driver/v2 v2.0.1
-	go.mongodb.org/mongo-driver/v2 v2.0.1
-	golang.org/x/crypto v0.33.0
+	golang.org/x/crypto v0.34.0
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12
 )
