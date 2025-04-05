@@ -2,7 +2,7 @@ module github.com/armando-couto/goutils
 
 go 1.23.0
 
-toolchain go1.24.1
+toolchain go1.24.2
 
 require (
 	github.com/aws/aws-sdk-go v1.55.6
@@ -12,7 +12,7 @@ require (
 	github.com/joho/godotenv v1.5.1
 	github.com/kardianos/service v1.2.2
 	github.com/lib/pq v1.10.9
-	go.mongodb.org/mongo-driver/v2 v2.1.0
+	go.mongodb.org/mongo-driver v1.17.3
 	go.mongodb.org/mongo-driver/v2 v2.1.0
 	golang.org/x/crypto v0.36.0
 	gorm.io/driver/postgres v1.5.11
