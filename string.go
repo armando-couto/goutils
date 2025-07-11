@@ -12,7 +12,7 @@ import (
 )
 
 /*
-	RemoveZerosInLeft
+RemoveZerosInLeft
 */
 func RemoveZerosInLeft(value string) string {
 	i, _ := strconv.Atoi(value)
@@ -20,7 +20,7 @@ func RemoveZerosInLeft(value string) string {
 }
 
 /*
-	RemoveSpaceString o antigo nome era: TirarEspacoString
+RemoveSpaceString o antigo nome era: TirarEspacoString
 */
 func RemoveSpaceString(value string) string {
 	t := strings.ReplaceAll(value, " ", "")
@@ -28,7 +28,7 @@ func RemoveSpaceString(value string) string {
 }
 
 /*
-	RemoveCharacters o antigo nome era: RemoveCaracteres
+RemoveCharacters o antigo nome era: RemoveCaracteres
 */
 func RemoveCharacters(value string) string {
 	value = strings.Replace(value, ".", "", 1)
@@ -39,7 +39,7 @@ func RemoveCharacters(value string) string {
 }
 
 /*
-	StandardizesMasksByCard o antigo nome era: PadronizaMascarasDeCartao
+StandardizesMasksByCard o antigo nome era: PadronizaMascarasDeCartao
 */
 func StandardizesMasksByCard(numeroCartao string) string {
 	numero := strings.ReplaceAll(numeroCartao, "000", "")
@@ -48,14 +48,14 @@ func StandardizesMasksByCard(numeroCartao string) string {
 }
 
 /*
-	StringTrim
+StringTrim
 */
 func StringTrim(value string) string {
 	return strings.Trim(value, " ")
 }
 
 /*
-	RemoveSpecialCharacters
+RemoveSpecialCharacters
 */
 func RemoveSpecialCharacters(value string) string {
 	// Make a Regex to say we only want letters and numbers
@@ -64,7 +64,16 @@ func RemoveSpecialCharacters(value string) string {
 }
 
 /*
-	RandSeq
+RemoveSpecialCharactersWithEmptySpaces
+*/
+func RemoveSpecialCharactersWithEmptySpaces(value string) string {
+	// Make a Regex to say we only want letters, numbers and empty spaces
+	reg, _ := regexp.Compile("[^a-zA-Z0-9\\s]+")
+	return reg.ReplaceAllString(value, "")
+}
+
+/*
+RandSeq
 */
 func RandSeq(n int) string {
 	rand.Seed(time.Now().UnixNano())
@@ -78,7 +87,7 @@ func RandSeq(n int) string {
 }
 
 /*
-	TokenGeneratorNLength o antigo nome era: RandToken
+TokenGeneratorNLength o antigo nome era: RandToken
 */
 func TokenGeneratorNLength(length int) string {
 	rand.Seed(time.Now().UnixNano())
@@ -88,7 +97,7 @@ func TokenGeneratorNLength(length int) string {
 }
 
 /*
-	TokenGeneratorOrderReferenceId
+TokenGeneratorOrderReferenceId
 */
 func TokenGeneratorOrderReferenceId() string {
 	rand.Seed(time.Now().UnixNano())
@@ -96,14 +105,14 @@ func TokenGeneratorOrderReferenceId() string {
 }
 
 /*
-	RemoveHeadHyphen o antigo nome era: RetiraPontoHifen
+RemoveHeadHyphen o antigo nome era: RetiraPontoHifen
 */
 func RemoveHeadHyphen(s string) string {
 	return strings.Replace(strings.Replace(strings.Replace(s, ".", "", -1), "-", "", -1), "/", "", -1)
 }
 
 /*
-	ValidateIfNotEmptyNumber o antigo nome era: ValidaDecimal
+ValidateIfNotEmptyNumber o antigo nome era: ValidaDecimal
 */
 func ValidateIfNotEmptyNumber(valor string) string {
 	if valor == "" {
@@ -113,7 +122,7 @@ func ValidateIfNotEmptyNumber(valor string) string {
 }
 
 /*
-	ValidateIfNotEmptyDate o antigo nome era: ValidaData
+ValidateIfNotEmptyDate o antigo nome era: ValidaData
 */
 func ValidateIfNotEmptyDate(data string) string {
 	if data == "" {
@@ -123,20 +132,21 @@ func ValidateIfNotEmptyDate(data string) string {
 }
 
 /*
-	RemoveCNPJMask o antigo nome era: RemoveMascaraCNPJ
+RemoveCNPJMask o antigo nome era: RemoveMascaraCNPJ
 */
 func RemoveCNPJMask(cnpj string) string {
 	return strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(cnpj, ".", ""), "-", ""), "/", "")
 }
 
 /*
-	ParseBinToHex
+ParseBinToHex
 */
 func ParseBinToHex(s string) string {
 	return strconv.FormatInt(int64(ConvertStringToInt(s)), 16)
 }
 
 var table = [...]byte{'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+
 func EncodeToString(max int) string {
 	b := make([]byte, max)
 	n, err := io.ReadAtLeast(randc.Reader, b, max)
