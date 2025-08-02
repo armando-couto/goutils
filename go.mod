@@ -5,14 +5,14 @@ go 1.23.0
 toolchain go1.24.5
 
 require (
-	github.com/aws/aws-sdk-go v1.55.7
+	github.com/aws/aws-sdk-go v1.55.8
 	github.com/fatih/structs v1.1.0
 	github.com/go-sql-driver/mysql v1.9.3
 	github.com/jlaffaye/ftp v0.2.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kardianos/service v1.2.4
 	github.com/lib/pq v1.10.9
-	go.mongodb.org/mongo-driver/v2 v2.2.2
+	go.mongodb.org/mongo-driver v1.17.4
 	go.mongodb.org/mongo-driver/v2 v2.2.2
 	golang.org/x/crypto v0.40.0
 	gorm.io/driver/postgres v1.6.0
