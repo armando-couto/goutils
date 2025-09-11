@@ -16,7 +16,7 @@ require (
 	go.mongodb.org/mongo-driver/v2 v2.3.0
 	golang.org/x/crypto v0.42.0
 	gorm.io/driver/postgres v1.6.0
-	gorm.io/gorm v1.30.4
+	gorm.io/gorm v1.30.5
 )
 
 require (
