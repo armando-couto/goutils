@@ -14,7 +14,7 @@ require (
 	github.com/lib/pq v1.10.9
 	github.com/shopspring/decimal v1.2.0
 	go.mongodb.org/mongo-driver v1.17.4
-	go.mongodb.org/mongo-driver/v2 v2.3.0
+	go.mongodb.org/mongo-driver/v2 v2.3.1
 	golang.org/x/crypto v0.43.0
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.31.0
