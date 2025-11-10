@@ -1,7 +1,6 @@
 package goutils
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -15,7 +14,11 @@ type MessageGotify struct {
 	Priority  int
 }
 
-func (m MessageGotify) SendNotification() error {
+func (m MessageGotify) SendNotification() {
+	if m.ServerURL == "" && m.Token == "" {
+		return
+	}
+
 	form := url.Values{}
 	form.Add("title", m.Title)
 	form.Add("message", m.Message)
@@ -23,13 +26,11 @@ func (m MessageGotify) SendNotification() error {
 
 	resp, err := http.PostForm(fmt.Sprintf("%s/message?token=%s", m.ServerURL, m.Token), form)
 	if err != nil {
-		return err
+		CreateFileDay(Message{Error: "Falha ao enviar Notificação via Gotify: ", Objects: []interface{}{resp}}, m)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		CreateFileDay(Message{Error: "Falha ao enviar Notificação via Gotify: ", Objects: []interface{}{resp}})
-		return errors.New(resp.Status)
+		CreateFileDay(Message{Error: "Não teve o Status OK do Gotify: ", Objects: []interface{}{resp}}, m)
 	}
-	return nil
 }
