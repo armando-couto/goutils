@@ -47,8 +47,8 @@ func CreateFileDay(message Message, m *MessageGotify) {
 
 	// Nó de permissão do banco, igual original
 	if message.Error == "pq: cannot execute INSERT in a read-only transaction" ||
-			message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
-			message.Error == "pq: cannot execute DELETE in a read-only transaction" {
+		message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
+		message.Error == "pq: cannot execute DELETE in a read-only transaction" {
 		os.Exit(0)
 	}
 }

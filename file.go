@@ -9,23 +9,23 @@ import (
 )
 
 /*
-	ListFolderFiles o antigo nome era: ListarArquivosDaPasta
+ListFolderFiles o antigo nome era: ListarArquivosDaPasta
 */
 func ListFolderFiles(path string) []os.FileInfo {
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
-		CreateFileDay(Message{File: "ListFolderFiles(path)", Error: fmt.Sprint("a pasta '", path, "' não existe!")})
+		CreateFileDay(Message{File: "ListFolderFiles(path)", Error: fmt.Sprint("a pasta '", path, "' não existe!")}, nil)
 	}
 	return files
 }
 
 /*
-	ReadingFiles o antigo nome era: LeituraDosArquivos
+ReadingFiles o antigo nome era: LeituraDosArquivos
 */
 func ReadingFiles(path string, fileName string) string {
 	file, err := os.Open(fmt.Sprint(path, fileName))
 	if err != nil {
-		CreateFileDay(Message{File: "ReadingFiles(path, fileName)", Error: fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!")})
+		CreateFileDay(Message{File: "ReadingFiles(path, fileName)", Error: fmt.Sprint("O arquivo '", fileName, "' não está mais na pasta!")}, nil)
 	}
 	defer file.Close()
 
@@ -34,18 +34,18 @@ func ReadingFiles(path string, fileName string) string {
 }
 
 /*
-	RemoveFilesOfPath o antigo nome era: RemoveFile
+RemoveFilesOfPath o antigo nome era: RemoveFile
 */
 func RemoveFilesOfPath(path string) {
 	if os.Remove(path) != nil {
-		CreateFileDay(Message{Error: "Problema ao remover do diretório local"})
+		CreateFileDay(Message{Error: "Problema ao remover do diretório local"}, nil)
 	} else {
-		CreateFileDay(Message{Error: "Removido do local"})
+		CreateFileDay(Message{Error: "Removido do local"}, nil)
 	}
 }
 
 /*
-	ReturnsTheRows o antigo nome era: RetornaAsLinhas
+ReturnsTheRows o antigo nome era: RetornaAsLinhas
 */
 func ReturnsTheRows(text string) []string {
 	var linhas []string
@@ -57,7 +57,7 @@ func ReturnsTheRows(text string) []string {
 }
 
 /*
-	CreateDirectory o antigo nome era: CriaDiretorio
+CreateDirectory o antigo nome era: CriaDiretorio
 */
 func CreateDirectory(directory string) bool {
 	err := os.MkdirAll(directory, os.ModePerm)
@@ -68,24 +68,24 @@ func CreateDirectory(directory string) bool {
 }
 
 /*
-	CreateArchiveNodirectory o antigo nome era: CreateArchiveNodirectory
+CreateArchiveNodirectory o antigo nome era: CreateArchiveNodirectory
 */
 func CreateArchiveNodirectory(nomeDoArquivo string, conteudo string) error {
 	return ioutil.WriteFile(nomeDoArquivo, []byte(conteudo), 0777)
 }
 
 /*
-	IsError o antigo nome era: IsError
+IsError o antigo nome era: IsError
 */
 func IsError(err error) bool {
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 	}
 	return err != nil
 }
 
 /*
-	Backup
+Backup
 */
 func Backup(path, name, texto string) {
 	path_novo := fmt.Sprint(path, "BACKUP/")
@@ -96,5 +96,5 @@ func Backup(path, name, texto string) {
 
 	path_nome_arquivo_antigo := fmt.Sprint(path, name)
 	os.Remove(path_nome_arquivo_antigo)
-	CreateFileDay(Message{Info: fmt.Sprint("Concluída a Leitura do Arquivo: ", name)})
+	CreateFileDay(Message{Info: fmt.Sprint("Concluída a Leitura do Arquivo: ", name)}, nil)
 }

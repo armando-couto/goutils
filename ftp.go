@@ -12,28 +12,28 @@ import (
 )
 
 /*
-	ListOfAvailableFilesNoFTP o antigo nome era: ListaDeArquivosDisponiveisNoFTP
+ListOfAvailableFilesNoFTP o antigo nome era: ListaDeArquivosDisponiveisNoFTP
 */
 func ListOfAvailableFilesNoFTP(remote string, port string, user string, pass string) (*ftp.ServerConn, error, []string) {
 	c, err := ftp.Dial(remote+":"+port, ftp.DialWithTimeout(60*time.Second))
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 	}
 	err = c.Login(user, pass)
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 	}
 
 	//var nome_arquivo string
 	list, _ := c.NameList("/")
 	if err := c.Quit(); err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 	}
 	return c, err, list
 }
 
 /*
-	GetHostKey: parse OpenSSH known_hosts file ssh or use ssh-keyscan to get initial key
+GetHostKey: parse OpenSSH known_hosts file ssh or use ssh-keyscan to get initial key
 */
 func GetHostKey(host string, isProduction bool) ssh.PublicKey {
 	var file *os.File

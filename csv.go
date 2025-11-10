@@ -11,7 +11,7 @@ import (
 )
 
 /*
-	CSVGZExport o antigo nome era: CsvGzExport
+CSVGZExport o antigo nome era: CsvGzExport
 */
 func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 	if len(StructCsv) < 1 {
@@ -40,17 +40,17 @@ func CSVGZExport(StructCsv [][]string, nomeArquivo string) error {
 		defer wgzp.Close()
 	}
 
-	CreateFileDay(Message{Info: fmt.Sprint("Arquivo ", nomeArquivo, " gerado CSV.GZ")})
+	CreateFileDay(Message{Info: fmt.Sprint("Arquivo ", nomeArquivo, " gerado CSV.GZ")}, nil)
 	return nil
 }
 
 /*
-	CSVRead o antigo nome era: CsvRead
+CSVRead o antigo nome era: CsvRead
 */
 func CSVRead(pathFile string) [][]string {
 	f, err := os.Open(pathFile)
 	if err != nil {
-		CreateFileDay(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()})
+		CreateFileDay(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}, &MessageGotifyGlobal)
 	}
 	defer f.Close()
 
@@ -58,13 +58,13 @@ func CSVRead(pathFile string) [][]string {
 	arqReader.LazyQuotes = true
 	lines, err := arqReader.ReadAll()
 	if err != nil {
-		CreateFileDay(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()})
+		CreateFileDay(Message{Error: "ERRO: Leitura arquivo CSV:" + err.Error()}, &MessageGotifyGlobal)
 	}
 	return lines
 }
 
 /*
-	GeneratorFilesGen o antigo nome era: GeradorArquivosGen
+GeneratorFilesGen o antigo nome era: GeradorArquivosGen
 */
 func GeneratorFilesGen(payload []interface{}, f func([][]string) [][]string, nomeArq string) error {
 	structToCsv := make([][]string, 0)

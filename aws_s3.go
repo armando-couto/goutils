@@ -40,10 +40,10 @@ func UpdloadInS3(file multipart.File, path, fileName string) string {
 		Body:   file,
 	})
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
-	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}, nil)
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -69,10 +69,10 @@ func UpdloadInS3NotTime(file multipart.File, path, fileName string) string {
 		Body:   file,
 	})
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
-	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}, nil)
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -94,7 +94,7 @@ func UpdloadInS3Base64(b64 string, path, fileName string) string {
 
 	dec, err := base64.StdEncoding.DecodeString(b64)
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
 	//file, header, err := c.Request.FormFile("photo")
@@ -106,10 +106,10 @@ func UpdloadInS3Base64(b64 string, path, fileName string) string {
 		Body:   bytes.NewBuffer(dec),
 	})
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
-	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}, nil)
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -137,10 +137,10 @@ func UpdloadInS3Base64Byte(b64 []byte, path, fileName string) string {
 		Body:   bytes.NewBuffer(b64),
 	})
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
-	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}, nil)
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
@@ -166,10 +166,10 @@ func UpdloadInS3ArqTxt(texto string, path, fileName string) string {
 		Body:   strings.NewReader(texto),
 	})
 	if err != nil {
-		CreateFileDay(Message{Error: err.Error()})
+		CreateFileDay(Message{Error: err.Error()}, &MessageGotifyGlobal)
 		return ""
 	}
-	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)})
+	CreateFileDay(Message{Info: fmt.Sprint("Upload do Arquivo: ", up.UploadID)}, nil)
 	return "https://" + myBucket + "." + "s3.amazonaws.com/" + fileName
 }
 
