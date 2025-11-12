@@ -32,10 +32,11 @@ func CreateFileDay(message Message, m *MessageGotify) {
 
 	// Imprime o Error se não estiver vazio
 	if message.Error != "" {
+		messageString := fmt.Sprintf("ERROR\tFile: %s Script: %s | %s | Objects: %v\n", message.File, message.Script, message.Error, message.Objects)
 		logger.Printf("ERROR\tFile: %s Script: %s | %s | Objects: %v", message.File, message.Script, message.Error, message.Objects)
-		fmt.Printf("ERROR\tFile: %s Script: %s | %s | Objects: %v\n", message.File, message.Script, message.Error, message.Objects)
+		fmt.Print(message)
 		if m != nil {
-			m.SendNotification()
+			m.SendNotification(message.File, messageString)
 		}
 	}
 
@@ -47,8 +48,8 @@ func CreateFileDay(message Message, m *MessageGotify) {
 
 	// Nó de permissão do banco, igual original
 	if message.Error == "pq: cannot execute INSERT in a read-only transaction" ||
-		message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
-		message.Error == "pq: cannot execute DELETE in a read-only transaction" {
+			message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
+			message.Error == "pq: cannot execute DELETE in a read-only transaction" {
 		os.Exit(0)
 	}
 }

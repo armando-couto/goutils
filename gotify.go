@@ -9,19 +9,17 @@ import (
 type MessageGotify struct {
 	ServerURL string
 	Token     string
-	Title     string
-	Message   string
 	Priority  int
 }
 
-func (m MessageGotify) SendNotification() {
+func (m MessageGotify) SendNotification(title, message string) {
 	if m.ServerURL == "" && m.Token == "" {
 		return
 	}
 
 	form := url.Values{}
-	form.Add("title", m.Title)
-	form.Add("message", m.Message)
+	form.Add("title", title)
+	form.Add("message", message)
 	form.Add("priority", fmt.Sprintf("%d", m.Priority))
 
 	resp, err := http.PostForm(fmt.Sprintf("%s/message?token=%s", m.ServerURL, m.Token), form)
