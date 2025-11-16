@@ -17,6 +17,10 @@ func (m MessageGotify) SendNotification(title, message string) {
 		return
 	}
 
+	if title == "" || message == "" {
+		return
+	}
+
 	form := url.Values{}
 	form.Add("title", title)
 	form.Add("message", message)
