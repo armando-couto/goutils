@@ -11,6 +11,7 @@ type Message struct {
 	File    string
 	Script  string
 	Info    string
+	Warning string
 	Error   string
 	Objects []interface{}
 }
@@ -30,6 +31,17 @@ func CreateFileDay(message Message, m *MessageGotify) {
 		fmt.Printf("INFO\tFile: %s Script: %s | %s | Objects: %v\n", message.File, message.Script, message.Info, message.Objects)
 	}
 
+	// Imprime o Warning se não estiver vazio: é um alerta, não um erro.
+	// Vai para o arquivo do dia, para o stdout e para o Gotify com o rótulo WARNING.
+	if message.Warning != "" {
+		messageString := fmt.Sprintf("WARNING\tFile: %s Script: %s | %s | Objects: %v\n", message.File, message.Script, message.Warning, message.Objects)
+		logger.Printf("WARNING\tFile: %s Script: %s | %s | Objects: %v", message.File, message.Script, message.Warning, message.Objects)
+		fmt.Print(messageString)
+		if m != nil {
+			m.SendNotification(message.File, messageString)
+		}
+	}
+
 	// Imprime o Error se não estiver vazio
 	if message.Error != "" {
 		messageString := fmt.Sprintf("ERROR\tFile: %s Script: %s | %s | Objects: %v\n", message.File, message.Script, message.Error, message.Objects)
@@ -40,16 +52,16 @@ func CreateFileDay(message Message, m *MessageGotify) {
 		}
 	}
 
-	// Se não teve Info nem Error, imprime uma linha neutra
-	if message.Info == "" && message.Error == "" {
+	// Se não teve Info, Warning nem Error, imprime uma linha neutra
+	if message.Info == "" && message.Warning == "" && message.Error == "" {
 		logger.Printf("OTHER\tFile: %s Script: %s | Objects: %v", message.File, message.Script, message.Objects)
 		fmt.Printf("OTHER\tFile: %s Script: %s | Objects: %v\n", message.File, message.Script, message.Objects)
 	}
 
 	// Nó de permissão do banco, igual original
 	if message.Error == "pq: cannot execute INSERT in a read-only transaction" ||
-			message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
-			message.Error == "pq: cannot execute DELETE in a read-only transaction" {
+		message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
+		message.Error == "pq: cannot execute DELETE in a read-only transaction" {
 		os.Exit(0)
 	}
 }
