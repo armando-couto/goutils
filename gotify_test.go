@@ -125,6 +125,46 @@ func TestSendNotificationEnviaOFormularioAoGotify(t *testing.T) {
 	}
 }
 
+// Gotify que aceita a conexão e não responde: o envio desiste no prazo do
+// cliente, em vez de prender quem registrou o erro.
+func TestSendNotificationComGotifyTravadoDesisteNoPrazo(t *testing.T) {
+	lerLog := logDoDia(t)
+	solta := make(chan struct{})
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		select {
+		case <-solta:
+		case <-r.Context().Done():
+		}
+	}))
+	defer srv.Close()
+	defer close(solta)
+	prazo := clienteGotify.Timeout
+	t.Cleanup(func() { clienteGotify.Timeout = prazo })
+	clienteGotify.Timeout = 200 * time.Millisecond
+
+	inicio := time.Now()
+	semPanico(t, func() {
+		MessageGotify{ServerURL: srv.URL, Token: tokenDeTeste}.SendNotification("titulo", "mensagem")
+	})
+
+	if d := time.Since(inicio); d > 3*time.Second {
+		t.Errorf("o envio levou %v; o prazo era %v", d, clienteGotify.Timeout)
+	}
+	log := lerLog()
+	if !strings.Contains(log, "Falha ao enviar Notificação via Gotify: Post: ") || !strings.Contains(log, "Client.Timeout exceeded") {
+		t.Errorf("o estouro do prazo não foi para o log:\n%s", log)
+	}
+	if strings.Contains(log, tokenDeTeste) {
+		t.Errorf("o token do Gotify foi parar no log:\n%s", log)
+	}
+}
+
+func TestSendNotificationUsaPrazoDe5Segundos(t *testing.T) {
+	if clienteGotify.Timeout != 5*time.Second {
+		t.Errorf("prazo do envio ao Gotify = %v, queria 5s", clienteGotify.Timeout)
+	}
+}
+
 func TestSendNotificationSemGotifyConfiguradoNaoEnvia(t *testing.T) {
 	lerLog := logDoDia(t)
 	semPanico(t, func() { MessageGotify{}.SendNotification("titulo", "mensagem") })

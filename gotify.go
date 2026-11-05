@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 type MessageGotify struct {
@@ -12,6 +13,11 @@ type MessageGotify struct {
 	Token     string
 	Priority  int
 }
+
+// clienteGotify tem prazo. O http.PostForm usava o cliente padrão, sem
+// timeout, e o envio roda dentro do CreateFileDay: um Gotify que aceita a
+// conexão e não responde prendia para sempre quem registrou o erro.
+var clienteGotify = &http.Client{Timeout: 5 * time.Second}
 
 func (m MessageGotify) SendNotification(title, message string) {
 	if m.ServerURL == "" && m.Token == "" {
@@ -29,7 +35,7 @@ func (m MessageGotify) SendNotification(title, message string) {
 
 	// As falhas do envio vão só para o arquivo de log (Gotify nil): não há
 	// como avisar pelo Gotify que o Gotify falhou.
-	resp, err := http.PostForm(fmt.Sprintf("%s/message?token=%s", m.ServerURL, m.Token), form)
+	resp, err := clienteGotify.PostForm(fmt.Sprintf("%s/message?token=%s", m.ServerURL, m.Token), form)
 	if err != nil {
 		// Sem resposta não há Body para fechar. O defer sobre a resposta
 		// nula entrava em pânico, e com o Gotify fora do ar todo erro
