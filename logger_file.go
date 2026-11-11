@@ -2,8 +2,10 @@ package goutils
 
 import (
 	"fmt"
+	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -15,15 +17,32 @@ type Message struct {
 	Objects []interface{}
 }
 
+var (
+	logger *log.Logger
+	once   sync.Once
+)
+
+func getLogger() *log.Logger {
+	once.Do(func() {
+		name := fmt.Sprintf("%s.log", time.Now().Format("20060102"))
+
+		lj := &lumberjack.Logger{
+			Filename:   name,
+			MaxSize:    5, // MB
+			MaxBackups: 5,
+			MaxAge:     30,
+			Compress:   true,
+		}
+
+		logger = log.New(lj, "", log.Ldate|log.Ltime)
+	})
+
+	return logger
+}
+
 func CreateFileDay(message Message, m *MessageGotify) {
-	f, err := os.OpenFile(fmt.Sprint(time.Now().Format("20060102"), ".log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Println(err)
-	}
-	defer f.Close()
-
-	logger := log.New(f, "", log.Ldate|log.Ltime)
-
+	logger := getLogger()
+	
 	// Imprime o Info se não estiver vazio
 	if message.Info != "" {
 		logger.Printf("INFO\tFile: %s Script: %s | %s | Objects: %v", message.File, message.Script, message.Info, message.Objects)
@@ -48,8 +67,8 @@ func CreateFileDay(message Message, m *MessageGotify) {
 
 	// Nó de permissão do banco, igual original
 	if message.Error == "pq: cannot execute INSERT in a read-only transaction" ||
-			message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
-			message.Error == "pq: cannot execute DELETE in a read-only transaction" {
+		message.Error == "pq: cannot execute UPDATE in a read-only transaction" ||
+		message.Error == "pq: cannot execute DELETE in a read-only transaction" {
 		os.Exit(0)
 	}
 }
