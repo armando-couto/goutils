@@ -3,12 +3,13 @@ package goutils
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
-	postgres "gorm.io/driver/postgres"
-	"gorm.io/gorm"
 	"strconv"
 	"strings"
 	"time"
+
+	_ "github.com/lib/pq"
+	postgres "gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 /*
@@ -36,15 +37,17 @@ func ConnectionBDPostgreSQL(applicationName, sslMode string, readOnly bool) *sql
 		psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s application_name=%s sslmode=%s", host, port, user, password, dbname, applicationName, sslMode)
 
 		db, err := sql.Open("postgres", psqlInfo)
-		db.SetMaxOpenConns(5)
-		db.SetMaxIdleConns(1)
-		db.SetConnMaxLifetime(1 * time.Minute)
 		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQL().sql.Open()", Error: err.Error()}, nil)
 			panic(err)
 		}
 
+		db.SetMaxOpenConns(5)
+		db.SetMaxIdleConns(1)
+		db.SetConnMaxLifetime(1 * time.Minute)
 		err = db.Ping()
 		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQL().db.Ping()", Error: err.Error()}, nil)
 			time.Sleep(2 * time.Second)
 			return ConnectionBDPostgreSQL(applicationName, sslMode, readOnly)
 		}
@@ -53,11 +56,16 @@ func ConnectionBDPostgreSQL(applicationName, sslMode string, readOnly bool) *sql
 		// Quando a função pg_is_in_recovery() é chamada e retorna FALSE quer dizer que é uma instância de ESCRITA,
 		// se retornar TRUE quer dizer que é somente de LEITURA.
 		err = db.QueryRow(`SELECT pg_is_in_recovery();`).Scan(&notReadOnly)
+		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQL().pg_is_in_recovery()", Error: err.Error()}, nil)
+		}
+
 		if err == nil && notReadOnly == readOnly {
 			return db
 		}
 	}
 
+	CreateFileDay(Message{File: "ConnectionBDPostgreSQL()", Info: "Sucesso!!!"}, nil)
 	return db
 }
 
@@ -86,15 +94,17 @@ func ConnectionBDPostgreSQLLog(applicationName, sslMode string, readOnly bool) *
 		psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s application_name=%s sslmode=%s", host, port, user, password, dbname, applicationName, sslMode)
 
 		db, err := sql.Open("postgres", psqlInfo)
-		db.SetMaxOpenConns(5)
-		db.SetMaxIdleConns(1)
-		db.SetConnMaxLifetime(1 * time.Minute)
 		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQLLog().sql.Open()", Error: err.Error()}, nil)
 			panic(err)
 		}
 
+		db.SetMaxOpenConns(5)
+		db.SetMaxIdleConns(1)
+		db.SetConnMaxLifetime(1 * time.Minute)
 		err = db.Ping()
 		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQLLog().db.Ping()", Error: err.Error()}, nil)
 			time.Sleep(2 * time.Second)
 			return ConnectionBDPostgreSQLLog(applicationName, sslMode, readOnly)
 		}
@@ -103,11 +113,16 @@ func ConnectionBDPostgreSQLLog(applicationName, sslMode string, readOnly bool) *
 		// Quando a função pg_is_in_recovery() é chamada e retorna FALSE quer dizer que é uma instância de ESCRITA,
 		// se retornar TRUE quer dizer que é somente de LEITURA.
 		err = db.QueryRow(`SELECT pg_is_in_recovery();`).Scan(&notReadOnly)
+		if err != nil {
+			CreateFileDay(Message{File: "ConnectionBDPostgreSQLLog().pg_is_in_recovery()", Error: err.Error()}, nil)
+		}
+
 		if err == nil && notReadOnly == readOnly {
 			return db
 		}
 	}
 
+	CreateFileDay(Message{File: "ConnectionBDPostgreSQLLog()", Info: "Sucesso!!!"}, nil)
 	return db
 }
 
