@@ -19,6 +19,7 @@ Podendo passar na variável host vários hosts, isso é muito bom para quando te
 	host = "localhost;127.0.0.1"
 */
 func ConnectionBDPostgreSQL(applicationName, sslMode string, readOnly bool) *sql.DB {
+	CreateFileDay(Message{File: "ConnectionBDPostgreSQL()", Info: "Starting..."}, nil)
 	var dbname, user, password string
 	var port int
 	var db *sql.DB
